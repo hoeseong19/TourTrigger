@@ -4,9 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
+var mongoose = require('mongoose');
+var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var toursRouter = require('./routes/tours');
 
 var app = express();
 
@@ -14,20 +17,29 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+mongoose.Promise = global.Promise;
+const connStr = 'mongodb://hoeseong:mongo7850@cluster0-shard-00-00-7rcul.mongodb.net:27017,cluster0-shard-00-01-7rcul.mongodb.net:27017,cluster0-shard-00-02-7rcul.mongodb.net:27017/project?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+mongoose.connect(connStr, {useMongoClient: true });
+mongoose.connection.on('error', console.error);
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
+
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
+  indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tours', toursRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
