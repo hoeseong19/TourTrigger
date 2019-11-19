@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  form(action="/tours", method="POST")
+    .container.my-5
+      //- title
+      div(class="form-group")
+        label(for="title") Title
+        input.form-control(type="text", name="title", value=tour.title)
+      //- description
+      div(class="form-group")
+        label(for="description") Description
+        textarea.form-control(name="description", rows="5")= tour.description
+      //- courses
+      div(class="form-group")
+        label(for="course") Course
+        input.form-control(type="text", name="course", value=tour.course)
+      //- price
+      div(class="form-group")
+        label(for="price") Price
+        input.form-control(type="text", name="price", value=tour.price)
+      
+      button(type="submit", class="btn btn-primary").
+        Submit

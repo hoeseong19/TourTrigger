@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .container.my-5
+    h1= tour.title
+
+    a(class="btn btn-outline-secondary mr-1" href=`/tours/${tour._id}/edit` role="button")  #[i(class="far fa-edit")] Edit
+    |
+    a(class="btn btn-outline-danger mr-1" href=`/tours/${tour._id}?_method=delete` role="button")  #[i(class="far fa-trash-alt")] Delete
+
+    .clearfix.p-3.border-bottom
+
+    p.desc= tour.description
+
+    

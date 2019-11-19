@@ -6,6 +6,8 @@ var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
+var flash = require('connect-flash');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -28,6 +30,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
+
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'long-long-long-secret-string-1313513tefgwdsvbjkvasd'
+}));
+
+app.use(flash());
 
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
