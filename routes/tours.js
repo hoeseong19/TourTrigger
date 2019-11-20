@@ -28,14 +28,16 @@ router.get('/:id', async function(req, res, next) {
 });
 
 router.post('/', async function(req, res, next) {
+  const user = req.session.user;
   var tour = new Tour({
+    author: user._id,
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
     course: req.body.course
   });
   await tour.save();
-  // req.flash('success', 'Successfully posted');
+  req.flash('success', 'Successfully posted');
   res.redirect('/tours');
 });
 

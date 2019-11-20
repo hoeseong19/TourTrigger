@@ -4,7 +4,9 @@ block content
   .container.my-5
     each tour in tours
       a(href=`/tours/${tour._id}`)
-        div(class="card tour") 
+        div(class="card tour my-3") 
           h5(class="card-header")= tour.title
           div(class="card-body") 
             p(class="card-text")= tour.description
+
+    a(class="btn btn-primary float-right" href="/tours/new" role="button") new

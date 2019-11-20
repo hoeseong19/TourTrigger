@@ -27,6 +27,15 @@ html
             li(class="nav-item")
               a(class="nav-link", href="/users/new") Signup
 
+    if flashMessages
+      each texts, type in flashMessages
+        .container.mt-3
+          .alert.alert-dismissible.fade.show(class=`alert-${type}`)
+            each msg in texts
+              | #{msg} 
+            button.close(type='button', data-dismiss='alert', aria-label='close')
+              span(aria-hidden='true') &times;
+
     block content
 
     

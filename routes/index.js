@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require("../models/user");
+var bcrypt = require('bcrypt');
 var router = express.Router();
 
 /* GET home page. */
@@ -11,11 +12,11 @@ router.get('/signin', function(req, res, next) {
   res.render('signin');
 });
 
-router.post('/signin', function(req, res, next) {
+router.post('/signin', function(req, res, next) { 
   User.findOne({email: req.body.email}, function(err, user){
     if (err) {
       res.render('error', {message: "Error", error: err});
-    } else if (!user || user.password !== req.body.password) {
+    } else if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
       req.flash('danger', 'Invalid username or password.');
       res.redirect('back');
     } else {

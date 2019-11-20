@@ -1,4 +1,12 @@
 extends ../layout
 
 block content
-  
+  .container.my-5
+    each user in users
+      a(href=`/users/${user._id}`)
+        div(class="card user my-3") 
+          h5(class="card-header")= user.email
+          div(class="card-body") 
+            p(class="card-text")= user.description
+
+    a(class="btn btn-primary float-right" href="/users/new" role="button") new

@@ -1,3 +1,4 @@
 $(function() {
-  $('#summernote').summernote();
+  $('.summernote').summernote();
+  $('.note-popover').hide();
 });
