@@ -47,6 +47,12 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.session.user;
+  res.locals.flashMessages = req.flash();
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tours', toursRouter);

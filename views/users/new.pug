@@ -1,4 +1,23 @@
 extends ../layout
 
 block content
-  
+  .container.my-5
+    form(action="/users", method="POST")
+      div(class="form-group") 
+        label(for="email") Email address
+        input(type="email", class="form-control", aria-describedby="emailHelp", placeholder="Enter email", name="email") 
+        small(id="emailHelp", class="form-text text-muted") We'll never share your email with anyone else.
+
+      div(class="form-group") 
+        label(for="name") name
+        input(type="text", class="form-control", placeholder="name", name="name") 
+      
+      div(class="form-group") 
+        label(for="password") Password
+        input(type="password", class="form-control", placeholder="Password", name="password") 
+
+      div(class="form-group") 
+        label(for="password") Password
+        input(type="password", class="form-control", placeholder="Password Again", name="") 
+      
+      button(type="submit", class="btn btn-primary") Submit
