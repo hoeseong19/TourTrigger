@@ -6,7 +6,5 @@ block content
       a(href=`/tours/${tour._id}`)
         div(class="card tour my-3") 
           h5(class="card-header")= tour.title
-          div(class="card-body") 
-            p(class="card-text")= tour.description
-
+          div(class="card-body") !{tour.description}
     a(class="btn btn-primary float-right" href="/tours/new" role="button") new
