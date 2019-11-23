@@ -2,6 +2,15 @@ var express = require('express');
 var Tour = require('../models/tour');
 var router = express.Router();
 
+function needAuth(req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    req.flash('danger', 'Please signin first.');
+    res.redirect('/signin');
+  }
+}
+
 router.get('/', function(req, res, next) {
   Tour.paginate({}, { page: 1, limit: 10 }, function(err, tours) {
     if (err) {
@@ -21,10 +30,39 @@ router.get('/new', function(req, res, next) {
   res.render('tours/new', {tour: {}});
 });
 
+router.get('/:id/edit', async function(req, res, next) {
+  const tour = await Tour.findById(req.params.id);
+
+  res.render('tours/edit', {tour: tour});
+});
+
 router.get('/:id', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
   await tour.save();
   res.render('tours/show', {tour: tour});
+});
+
+router.put('/:id/update', async function(req, res, next) {
+  const tour = await Tour.findById(req.params.id);
+  if (!tour) {
+    req.flash('danger', 'Not existed tour');
+    return res.redirect('back');
+  }
+
+  tour.title = req.body.title;
+  tour.description = req.body.description;
+  tour.price = req.body.price;
+  tour.course = req.body.course;
+
+  await tour.save();
+  req.flash('success', 'Successfully posted');
+  res.redirect('tours', {tour: tour});
+});
+
+router.delete('/:id', async function(req, res, next) {
+  await Tour.findOneAndRemove({_id: req.params.id});
+  req.flash('success', 'Successfully deleted');
+  res.redirect('/tours');
 });
 
 router.post('/', async function(req, res, next) {
