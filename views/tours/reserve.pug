@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  .container.my-5
+    form(action="/", method="POST")
+      h2 현재 예약 중인 여행
+      include _tourcard
+
+      //- form
+
+      button(type="submit", class="btn btn-primary") Submit
+
+    

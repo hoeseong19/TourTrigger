@@ -23,6 +23,12 @@ router.get('/new', function(req, res, next) {
   res.render("users/new", {user: {}});
 });
 
+router.get('/:id', async function(req, res, next) {
+  const user = await User.findById(req.params.id);
+  await user.save();
+  res.render("users/show", {user: user, tours: user.reserved_tours});
+});
+
 router.post('/', async function(req, res, next) {
   const saltRounds = 10;
   var hash = bcrypt.hashSync(req.body.password, saltRounds);

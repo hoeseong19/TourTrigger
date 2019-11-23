@@ -3,8 +3,5 @@ extends ../layout
 block content
   .container.my-5
     each tour in tours
-      a(href=`/tours/${tour._id}`)
-        div(class="card tour my-3") 
-          h5(class="card-header")= tour.title
-          div(class="card-body") !{tour.description}
+      include _tourcard
     a(class="btn btn-primary float-right" href="/tours/new" role="button") new

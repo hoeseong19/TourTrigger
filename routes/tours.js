@@ -1,15 +1,9 @@
 var express = require('express');
 var Tour = require('../models/tour');
+var Review = require('../models/review');
 var router = express.Router();
 
-function needAuth(req, res, next) {
-  if (req.session.user) {
-    next();
-  } else {
-    req.flash('danger', 'Please signin first.');
-    res.redirect('/signin');
-  }
-}
+
 
 router.get('/', function(req, res, next) {
   Tour.paginate({}, { page: 1, limit: 10 }, function(err, tours) {
@@ -34,6 +28,12 @@ router.get('/:id/edit', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
 
   res.render('tours/edit', {tour: tour});
+});
+
+router.get('/:id/reserve', async function(req, res, next) {
+  const tour = await Tour.findById(req.params.id);
+
+  res.render('tours/reserve', {tour: tour});
 });
 
 router.get('/:id', async function(req, res, next) {
@@ -77,6 +77,27 @@ router.post('/', async function(req, res, next) {
   await tour.save();
   req.flash('success', 'Successfully posted');
   res.redirect('/tours');
+});
+
+router.post('/:id/review', async function(req, res, next) {
+  const tour = await Tour.findById(req.params.id);
+  const user = req.session.user;
+
+  if (!tour) {
+    return res.redirect('back');
+  }
+
+  var review = new Review({
+    tour: tour._id,
+    user: user._id,
+    title: req.body.title,
+    description: req.body.description
+  });
+  await review.save();
+  await tour.save();
+
+  req.flash('success', 'Successfully posted');
+  res.redirect(`/tours/${req.params.id}`);
 });
 
 module.exports = router;

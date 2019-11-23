@@ -5,4 +5,32 @@ body {
   border-style: solid;
   border-width: 5px; }
 
+#profile a {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  padding: 4px 6px;
+  font-family: -apple, -sBlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.2;
+  display: inline-block;
+  border-radius: 3px; }
+
+#profile svg {
+  height: 12px;
+  width: auto;
+  position: relative;
+  vertical-align: middle;
+  top: -2px;
+  fill: white; }
+
+#profile span {
+  display: inline-block;
+  padding: 2px 3px; }
+
+#profile img {
+  display: block;
+  border-radius: 50%; }
+
 /*# sourceMappingURL=style.css.map */

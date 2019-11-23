@@ -12,4 +12,6 @@ block content
 
     div !{tour.description}
 
-    
+    div
+      span !{tour.price} &#8361;
+      a(class="btn btn-outline-primary ml-auto" href=`/tours/${tour._id}/reserve` role="button") 예약하기
