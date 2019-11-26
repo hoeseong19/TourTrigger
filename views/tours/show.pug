@@ -12,6 +12,9 @@ block content
 
     div !{tour.description}
 
+    //- each course in tour.courses
+
+
     div
-      span !{tour.price} &#8361;
-      a(class="btn btn-outline-primary ml-auto" href=`/tours/${tour._id}/reserve` role="button") 예약하기
+      span.mr-3 !{tour.price} &#8361; /인
+      a(class="btn btn-outline-primary mr-3" href=`/tours/${tour._id}/reserve` role="button") 예약하기

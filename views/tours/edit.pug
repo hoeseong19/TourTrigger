@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  form(action=`tours/${tour._id}/update?_method=put`, method="POST")
+  form(action=`/tours/${tour._id}/update?_method=put`, method="POST")
     .container.my-5
       include _form
       button(type="submit", class="btn btn-primary") Submit

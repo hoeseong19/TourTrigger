@@ -9,16 +9,22 @@ div(class="form-group")
 //- courses
 div(class="form-group")
   label(for="course") Course
-  input.form-control.w-50(type="text", name="course", value=tour.course)
-  //- ajax
-  //- button add
-  
-  //- ul(class="list-group list-group-flush w-25") 
-  //-   li(class="list-group-item") Cras justo odio #[i(class="far fa-times")]
-  //-   li(class="list-group-item") Dapibus ac facilisis in
-  //-   li(class="list-group-item") Morbi leo risus
-  //-   li(class="list-group-item") Porta ac consectetur ac
-  //-   li(class="list-group-item") Vestibulum at eros
+  div(class="d-flex justify-content-start")
+    input.form-control.w-25.mr-1(type="text", name="course")
+    button(type="button" class="btn btn-dark addBtn") ADD
+
+
+  ul(class="list-group list-group-flush w-25 courselist") 
+    li(class="list-group-item") Cras justo odio
+      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
+    li(class="list-group-item") Dapibus ac facilisis in
+      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
+    li(class="list-group-item") Morbi leo risus
+      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
+    li(class="list-group-item") Porta ac consectetur ac
+      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
+    li(class="list-group-item") Vestibulum at eros
+      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
 
   
 //- price

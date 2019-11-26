@@ -44,6 +44,12 @@ router.get('/:id', async function(req, res, next) {
 
 router.put('/:id/update', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
+  const courses = $(".courselist li").toArray();
+
+  const courselist = courses.map(function(course) {
+    return course.innerText;
+  });
+
   if (!tour) {
     req.flash('danger', 'Not existed tour');
     return res.redirect('back');
@@ -52,11 +58,11 @@ router.put('/:id/update', async function(req, res, next) {
   tour.title = req.body.title;
   tour.description = req.body.description;
   tour.price = req.body.price;
-  tour.course = req.body.course;
+  tour.courses = courselist;
 
   await tour.save();
   req.flash('success', 'Successfully posted');
-  res.redirect('tours', {tour: tour});
+  res.redirect('/tours');
 });
 
 router.delete('/:id', async function(req, res, next) {
@@ -66,14 +72,20 @@ router.delete('/:id', async function(req, res, next) {
 });
 
 router.post('/', async function(req, res, next) {
-  const user = req.session.user;
+  // const user = req.session.user;
+  const courses = $(".courselist li").toArray();
+
   var tour = new Tour({
-    author: user._id,
+    // author: user._id,
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
-    course: req.body.course
   });
+  // tour.courses.remove();
+  // var courselist = courses.map(function(course) {
+  //   tour.courses.push(course.innerText);
+  // });
+  console.log(courses);
   await tour.save();
   req.flash('success', 'Successfully posted');
   res.redirect('/tours');

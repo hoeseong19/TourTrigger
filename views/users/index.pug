@@ -8,5 +8,8 @@ block content
           h5(class="card-header")= user.email
           div(class="card-body") 
             p(class="card-text") group: !{user.group}
+            a(class="btn btn-outline-secondary mr-1 admin" href=`/tours/${tour._id}/edit` role="button")  #[i(class="far fa-edit")] Edit
+            |
+            a(class="btn btn-outline-danger mr-1" href=`/tours/${tour._id}?_method=delete` role="button")  #[i(class="far fa-trash-alt")] Delete
 
     a(class="btn btn-primary float-right" href="/users/new" role="button") new
