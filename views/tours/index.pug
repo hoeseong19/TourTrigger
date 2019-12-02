@@ -4,4 +4,5 @@ block content
   .container.my-5
     each tour in tours
       include _tourcard
+    include ../includes/_pagination
     a(class="btn btn-primary float-right mb-5" href="/tours/new" role="button") new

@@ -26,7 +26,7 @@ router.get('/new', function(req, res, next) {
 router.get('/:id', async function(req, res, next) {
   const user = await User.findById(req.params.id);
   await user.save();
-  res.render("users/show", {user: user, tours: user.reserved_tours});
+  res.render("users/show", {user: user});
 });
 
 router.post('/', async function(req, res, next) {
