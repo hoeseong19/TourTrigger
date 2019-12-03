@@ -13,11 +13,7 @@ router.get('/', function(req, res, next) {
       return next(err);
     }
     console.log("err", err);
-    // result.docs
-    // result.total
-    // result.limit - 10
-    // result.page - 3
-    // result.pages
+    
     res.render('tours/index', {tours: tours});
   });
 });

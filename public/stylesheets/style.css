@@ -40,6 +40,9 @@ body {
   padding: 2px 3px; }
 
 #map {
-  height: 100; }
+  height: 500px; }
+
+.modal-body::-webkit-scrollbar {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

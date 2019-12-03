@@ -57,5 +57,9 @@ body {
 }
 
 #map {
-  height: 100;
+  height: 500px;
+}
+
+.modal-body::-webkit-scrollbar {
+  display: none;
 }

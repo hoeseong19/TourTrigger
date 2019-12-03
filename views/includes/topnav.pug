@@ -1,36 +1,33 @@
-nav(id="topnav", class="navbar navbar-expand-lg navbar-light")
-  div(class="container")
-    button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
-      span(class="navbar-toggler-icon")
+nav#topnav.navbar.navbar-expand-lg.navbar-light
+  .container
+    button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+      span.navbar-toggler-icon
 
-    a(class="navbar-brand", href="/") TourTrigger
+    a.navbar-brand(href="/") TourTrigger
     
-    div(class="collapse navbar-collapse", id="navbarNav")
-      ul(class="navbar-nav ml-auto")
-        li(class="nav-item px-3 active")
-          a(class="nav-link", href="/tours/") Tours
-        li(class="nav-item px-3 ")
-          a(class="nav-link", href="/users/") Users
-        li(class="nav-item px-3 ")
-          a(class="nav-link", href="/signin") Signin
-        li(class="nav-item px-3 ")
-          a(class="nav-link", href="/users/new") Signup
+    div#navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        li.nav-item.px-3
+          a.nav-link(href="/tours/") Tours
+        li.nav-item.px-3
+          a.nav-link(href="/users/") Users
+        li.nav-item.px-3
+          a.nav-link(href="/signin") Signin
+        li.nav-item.px-3
+          a.nav-link(href="/users/new") Signup
 
-    button(type="button", class="btn", data-toggle="modal", data-target="#exampleModal") #[i(class="fas fa-search")]
+    button.btn(type="button", data-toggle="modal", data-target="#exampleModal") #[i(class="fas fa-search")]
     
-    div(class="modal fade", id="exampleModal", tabindex="-1", role="dialog", aria-labelledby="exampleModalLabel", aria-hidden="true") 
-      div(class="modal-dialog", role="document") 
-        div(class="modal-content") 
-          div(class="modal-header") 
-            h5(class="modal-title", id="exampleModalLabel") Modal title
-            button(type="button", class="close", data-dismiss="modal", aria-label="Close") 
+    #exampleModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="exampleModalLabel", aria-hidden="true") 
+      .modal-dialog(role="document") 
+        .modal-content 
+          .modal-header 
+            h5#exampleModalLabel.modal-title Modal title
+            button.close(type="button", data-dismiss="modal", aria-label="Close") 
               span(aria-hidden="true") &times;
 
-          div(class="modal-body") 
+          .modal-body
 
-          div(class="modal-footer") 
-            button(type="button", class="btn btn-secondary", data-dismiss="modal") Close
-            button(type="button", class="btn btn-primary") Search
-        
-      
-    
+          .modal-footer
+            button.btn.btn-secondary(type="button", data-dismiss="modal") Close
+            button.btn.btn-primary(type="button") Search
