@@ -3,9 +3,13 @@ $(function() {
   $(".addBtn").click(function() {
     var course = $("input[name=course]").val();
 
-    $(".courselist").append(`<li class='list-group-item'>${course}<button type='button' class='btn btn-dark btn-sm delBtn float-right'><i class='fas fa-times'></li>`)
+    $(".courselist").append(`<li class='list-group-item'>${course}<button type='button' class='btn btn-dark btn-sm delBtn float-right'><i class='fas fa-times delBtn'></li>`)
 
+    $("input[name=course]").val("");
     
+    $(".delBtn").click(function() {
+      $(this).closest("li").remove();
+    });
   });
 });
 

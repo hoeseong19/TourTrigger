@@ -39,4 +39,7 @@ body {
   display: inline-block;
   padding: 2px 3px; }
 
+#map {
+  height: 100; }
+
 /*# sourceMappingURL=style.css.map */

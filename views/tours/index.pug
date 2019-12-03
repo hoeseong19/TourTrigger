@@ -1,8 +1,10 @@
 extends ../layout
 
+include ../includes/_pagination
+
 block content
   .container.my-5
-    each tour in tours
+    each tour in tours.docs
       include _tourcard
-    include ../includes/_pagination
+    +pagination(tours, '/tours')
     a(class="btn btn-primary float-right mb-5" href="/tours/new" role="button") new

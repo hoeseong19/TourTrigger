@@ -1,17 +1,17 @@
-nav(aria-label="...") 
-  ul(class="pagination") 
-    li(class="page-item disabled") 
-      a(class="page-link" href="#" tabindex="-1" aria-disabled="true") Previous
-    
-    li(class="page-item") 
-      a(class="page-link" href="#") 1
-    li(class="page-item active" aria-current="page") 
-      a(class="page-link" href="#") 2 
-        span(class="sr-only") (current)
-    li(class="page-item") 
-      a(class="page-link" href="#") 3
-      
-    li(class="page-item") 
-      a(class="page-link" href="#") Next
-    
-  
+mixin pagination(docs, link)
+  - var url = `${link}?page=`;
+
+
+  if docs.pages > 1
+    - start = Math.max(docs.page - 5, 1);
+    - end = Math.min(docs.page + 5, docs.pages);
+
+    nav(aria-label="paginate") 
+      ul(class="pagination") 
+        li.page-item(class= (1 === docs.page) && 'disabled') 
+          a.page-link(href= url + (docs.page - 1), tabindex="-1") Prev
+        - for(let i = start; i <= end; i++)
+          li.page-item(class= (i === docs.page) && 'active') 
+            a.page-link(href=url + i)= i
+        li.page-item(class= (docs.pages === docs.page) && 'disabled') 
+          a.page-link(href= url + (docs.page + 1), tabindex='-1') Next

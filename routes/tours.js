@@ -6,7 +6,9 @@ var router = express.Router();
 
 
 router.get('/', function(req, res, next) {
-  Tour.paginate({}, { page: 1, limit: 10 }, function(err, tours) {
+  const page = parseInt(req.query.page) || 1;
+
+  Tour.paginate({}, { page: page, limit: 5 }, function(err, tours) {
     if (err) {
       return next(err);
     }
@@ -16,7 +18,7 @@ router.get('/', function(req, res, next) {
     // result.limit - 10
     // result.page - 3
     // result.pages
-    res.render('tours/index', {tours: tours.docs});
+    res.render('tours/index', {tours: tours});
   });
 });
 

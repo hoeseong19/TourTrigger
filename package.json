@@ -17,6 +17,7 @@
     "froala-editor": "^3.0.6",
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.7.11",
     "mongoose-paginate": "^5.0.3",
     "morgan": "~1.9.1",
@@ -24,6 +25,7 @@
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
     "passport-local": "^1.0.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "querystring": "^0.2.0"
   }
 }

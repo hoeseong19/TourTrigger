@@ -19,6 +19,9 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.locals.moment = require('moment');
+app.locals.querystring = require('querystring');
+
 mongoose.Promise = global.Promise;
 const connStr = 'mongodb://hoeseong:mongo7850@cluster0-shard-00-00-7rcul.mongodb.net:27017,cluster0-shard-00-01-7rcul.mongodb.net:27017,cluster0-shard-00-02-7rcul.mongodb.net:27017/project?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
 mongoose.connect(connStr, {useNewUrlParser: true});

@@ -1,4 +1,5 @@
 $primary_color:#e3f2fd;
+$secondary_color: #FFF9E3;
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -8,7 +9,7 @@ body {
   background-color: $primary_color;
 
   li:hover {
-    background-color: #FFF9E3;
+    background-color: $secondary_color;
     transition: 0.5s;
   }
 }
@@ -53,4 +54,8 @@ body {
     display:inline-block;
     padding:2px 3px;
   }
+}
+
+#map {
+  height: 100;
 }
