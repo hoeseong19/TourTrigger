@@ -1,7 +1,10 @@
-var express = require('express');
-var Tour = require('../models/tour');
-var Review = require('../models/review');
-var router = express.Router();
+const express = require('express');
+const Tour = require('../models/tour');
+const Review = require('../models/review');
+const multer = require('multer');
+const fs = require('fs-extra');
+const path = require('path');
+const router = express.Router();
 
 
 
@@ -69,9 +72,24 @@ router.delete('/:id', async function(req, res, next) {
   res.redirect('/tours');
 });
 
-router.post('/', async function(req, res, next) {
+const mimetypes = {
+  "image/jpeg": "jpg",
+  "image/gif": "gif",
+  "image/png": "png"
+};
+const upload = multer({
+  dest: 'tmp', 
+  fileFilter: (req, file, cb) => {
+    var ext = mimetypes[file.mimetype];
+    if (!ext) {
+      return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+  }
+});
+
+router.post('/', upload.single('image'), async function(req, res, next) {
   // const user = req.session.user;
-  const courses = $(".courselist li").toArray();
 
   var tour = new Tour({
     // author: user._id,
@@ -79,11 +97,13 @@ router.post('/', async function(req, res, next) {
     description: req.body.description,
     price: req.body.price,
   });
-  // tour.courses.remove();
-  // var courselist = courses.map(function(course) {
-  //   tour.courses.push(course.innerText);
-  // });
-  console.log(courses);
+  if (req.file) {
+    const dest = path.join(__dirname, '../public/images/uploads/');  // 옮길 디렉토리
+    console.log("File ->", req.file); // multer의 output이 어떤 형태인지 보자.
+    const filename = tour._id + "/" + req.file.originalname;
+    await fs.move(req.file.path, dest + filename);
+    tour.image = "/images/uploads/" + filename;
+  }
   await tour.save();
   req.flash('success', 'Successfully posted');
   res.redirect('/tours');

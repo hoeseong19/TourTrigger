@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  form(action="/tours", method="POST")
-    .container.my-5
+  .container.my-5
+    form(action="/tours", method="POST", enctype="multipart/form-data")
       include _form
       button(type="submit", class="btn btn-primary") Submit

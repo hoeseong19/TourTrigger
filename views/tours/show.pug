@@ -2,6 +2,9 @@ extends ../layout
 
 block content
   .container.my-5
+    if tour.image
+      img.img-fluid(src= tour.image)
+
     h1= tour.title
 
     a(class="btn btn-outline-secondary mr-1 admin" href=`/tours/${tour._id}/edit` role="button")  #[i(class="far fa-edit")] Edit

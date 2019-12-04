@@ -9,6 +9,7 @@ var schema = new Schema({
   price: {type: String, trim: true, required: true}, 
   description: {type: String, trim: true, required: true},
   courses: [String],
+  image: {type: String}, 
   reg_date: {type: Date, default: Date.now}
 }, {
   toJSON: { virtuals: true},
