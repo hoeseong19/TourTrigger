@@ -8,7 +8,7 @@ var schema = new Schema({
   password: {type: String, required: true, trim: true},
   reg_date: {type: Date, default: Date.now}, 
   group: {type: String, enum: ['admin', 'guide', 'tourist'], required: true},
-  reserved_tours: { type: [Schema.Types.ObjectId], ref: 'Tour' },
+  reserved_tours: { type: [Schema.Types.ObjectId], ref: 'Tour' }
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

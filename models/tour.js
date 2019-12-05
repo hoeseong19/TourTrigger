@@ -4,11 +4,10 @@ var mongoose = require('mongoose'),
 
 var schema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User' },
-  // location: {type: String, trim: true, required: true}, 
   title: {type: String, trim: true, required: true},
   price: {type: String, trim: true, required: true}, 
   description: {type: String, trim: true, required: true},
-  courses: [String],
+  courses: { type: [Schema.Types.ObjectId], ref: 'Course' }, 
   image: {type: String}, 
   reg_date: {type: Date, default: Date.now}
 }, {

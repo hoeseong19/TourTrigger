@@ -19,12 +19,8 @@ block content
 
     .clearfix.my-4
 
-    div(class="btn-group btn-group-lg w-100", role="group", aria-label="Basic example")
-      button(type="button", class="btn btn-secondary") 예약내역
-      button(type="button", class="btn btn-secondary") 위시리스트
-      button(type="button", class="btn btn-secondary") 등록한 투어
+    div(class="btn-group btn-group-lg w-100 mb-3", role="group", aria-label="Basic example")
+      button#reservation(type="button", class="btn btn-secondary") 예약내역
+      button#wishlist(type="button", class="btn btn-secondary") 위시리스트
       
-    .clearfix.my-4.border-top.border-dark
-
-    //- each tour in tours
-    //-   include ../tours/_tourcard
+    ul(class="list-group list-group-flush")

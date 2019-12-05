@@ -1,17 +1,17 @@
 const express = require('express');
 const Tour = require('../models/tour');
 const Review = require('../models/review');
+const Reservation = require('../models/reservation');
+const Course = require("../models/course");
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
 const router = express.Router();
 
-
-
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
 
-  Tour.paginate({}, { page: page, limit: 5 }, function(err, tours) {
+  Tour.paginate({}, { page: page, limit: 10 }, function(err, tours) {
     if (err) {
       return next(err);
     }
@@ -28,7 +28,7 @@ router.get('/new', function(req, res, next) {
 router.get('/:id/edit', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
 
-  res.render('tours/edit', {tour: tour});
+  res.render('tours/edit', {tour: tour, });
 });
 
 router.get('/:id/reserve', async function(req, res, next) {
@@ -107,6 +107,27 @@ router.post('/', upload.single('image'), async function(req, res, next) {
   await tour.save();
   req.flash('success', 'Successfully posted');
   res.redirect('/tours');
+});
+
+router.post('/:id/course', async function(req, res, next) {
+  const tour = await Tour.findById(req.params.id);
+  const user = req.session.user;
+
+  if (!tour) {
+    return res.redirect('back');
+  }
+
+  var course = new Course({
+    tour: tour._id,
+    title: req.body.title,
+    description: req.body.description, 
+    required_time: req.body
+  });
+  await course.save();
+  await tour.save();
+
+  req.flash('success', 'Successfully posted');
+  res.redirect(`/tours/${req.params.id}`);
 });
 
 router.post('/:id/review', async function(req, res, next) {

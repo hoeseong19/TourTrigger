@@ -1,21 +1,19 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
 var User = require("../models/user");
+var Reservation = require("../models/reservation");
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  User.paginate({}, { page: 1, limit: 10 }, function(err, users) {
+  const page = parseInt(req.query.page) || 1;
+
+  User.paginate({}, { page: page, limit: 10 }, function(err, users) {
     if (err) {
       return next(err);
     }
     console.log("err", err);
-    // result.docs
-    // result.total
-    // result.limit - 10
-    // result.page - 3
-    // result.pages
-    res.render('users/index', {users: users.docs});
+    res.render('users/index', {users: users});
   });
 });
 

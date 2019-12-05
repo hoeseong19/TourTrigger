@@ -7,31 +7,19 @@ div(class="form-group")
   label(for="description") Description
   textarea.form-control(class="summernote", name="description", rows="5")= tour.description
 //- courses
-div(class="form-group")
-  label(for="course") Course
-  div(class="d-flex justify-content-start")
+if courses
+  div(class="form-group")
+    label(for="course") Course
     input.form-control.w-25.mr-1(type="text", name="course")
-    button(type="button" class="btn btn-dark addBtn") ADD
 
-    button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseModal") Launch demo modal
+    include ./_courseinput
 
-    include ./_course
-
-  ul(class="list-group list-group-flush w-25 courselist") 
-    li(class="list-group-item") Cras justo odio
-      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
-    li(class="list-group-item") Dapibus ac facilisis in
-      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
-    li(class="list-group-item") Morbi leo risus
-      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
-    li(class="list-group-item") Porta ac consectetur ac
-      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
-    li(class="list-group-item") Vestibulum at eros
-      button(type="button" class="btn btn-dark btn-sm delBtn float-right") #[i(class="fas fa-times")]
+    ul(class="list-group list-group-flush courselist") 
+      
 
 //- price
 div(class="form-group")
-  label(for="image")
+  label(for="image") Image
   input.form-control(type="file", name="image")
   
 //- price
