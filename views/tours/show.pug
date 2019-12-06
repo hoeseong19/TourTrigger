@@ -13,11 +13,24 @@ block content
 
     .clearfix.p-3.border-bottom
 
-    div !{tour.description}
+    .py-5 !{tour.description}
 
-    //- each course in tour.courses
+    //- courses
+    if courses
+      include ./_courseinput
 
+      each course in courses
+        div(class="list-group list-group-flush courselist")
+          include ./_course
 
-    div
+    .my-5
       span.mr-3 !{tour.price} &#8361; /인
       a(class="btn btn-outline-primary mr-3" href=`/tours/${tour._id}/reserve` role="button") 예약하기
+
+    .clearfix.p-3.border-bottom
+
+    //- reviews
+    if reviews
+      each review in reviews
+        div(class="list-group list-group-flush reviewlist")
+          include ./_review

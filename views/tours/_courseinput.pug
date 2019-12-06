@@ -1,31 +1,32 @@
-button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseModal") Launch demo modal
+button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseModal") ADD COURSE
 
 div(class="modal fade", id="courseModal", tabindex="-1", role="dialog", aria-labelledby="courseModalTitle", aria-hidden="true") 
   div(class="modal-dialog modal-dialog-scrollable modal-lg", role="document") 
-    div(class="modal-content") 
-      div(class="modal-header") 
-        h5(class="modal-title", id="courseModalTitle") Course
-        button(type="button", class="close", data-dismiss="modal", aria-label="Close") 
-          span(aria-hidden="true") &times;
-        
-      div(class="modal-body")
-        div(class="input-group mb-3") 
-          div(class="input-group-prepend") 
-            span(class="input-group-text", id="courseTitle") Title
-          input(type="text", class="form-control", placeholder="Username", aria-label="Username", aria-describedby="courseTitle") 
-        
-        div(class="input-group mb-3") 
-          div(class="input-group-prepend") 
-            span(class="input-group-text", id="courseTime") Required Time
-          input(type="text", class="form-control", placeholder="Required Time", aria-label="Required Time", aria-describedby="courseTime") 
+    div(class="modal-content")
+      form(action=`${tour._id}/course`, method="POST")
+        div(class="modal-header") 
+          h5(class="modal-title", id="courseModalTitle") Course
+          button(type="button", class="close", data-dismiss="modal", aria-label="Close") 
+            span(aria-hidden="true") &times;
+          
+        div(class="modal-body")
+          //- title
+          div(class="form-group")
+            label(for="title") Title
+            input.form-control(type="text", name="coursetitle")
+          
+          //- required_time
+          div(class="form-group")
+            label(for="required_time") Required Time
+            input.form-control(type="datetime", name="courserequired_time")
 
-        div(class="input-group mb-3") 
-          div(class="input-group-prepend") 
-            span(class="input-group-text", id="courseDescription") Description
-            textarea.summernote(class="form-control", aria-label="courseDescription") 
+          //- description
+          div(class="form-group")
+            label(for="description") Description
+            textarea.form-control(class="summernote", name="coursedescription", rows="5")
 
-        #map
+          #map
 
-      div(class="modal-footer") 
-        button(type="button", class="btn btn-secondary", data-dismiss="modal") Close
-        button(type="button", class="btn btn-primary addBtn") Save changes
+        div(class="modal-footer") 
+          button(type="button", class="btn btn-secondary", data-dismiss="modal") Close
+          button(type="submit", class="btn btn-primary addBtn") Save course

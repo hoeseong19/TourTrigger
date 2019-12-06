@@ -8,6 +8,8 @@ const fs = require('fs-extra');
 const path = require('path');
 const router = express.Router();
 
+var userId = "5de36871d067d65f042de56c";
+
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
 
@@ -27,8 +29,9 @@ router.get('/new', function(req, res, next) {
 
 router.get('/:id/edit', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
+  const courses = await Course.find({tour: tour._id});
 
-  res.render('tours/edit', {tour: tour, });
+  res.render('tours/edit', {tour: tour, courses: courses});
 });
 
 router.get('/:id/reserve', async function(req, res, next) {
@@ -39,8 +42,11 @@ router.get('/:id/reserve', async function(req, res, next) {
 
 router.get('/:id', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
+  const courses = await Course.find({tour: tour._id});
+  const reviews = await Review.find({tour: tour._id});
+
   await tour.save();
-  res.render('tours/show', {tour: tour});
+  res.render('tours/show', {tour: tour, courses: courses, reviews: reviews});
 });
 
 router.put('/:id/update', async function(req, res, next) {
@@ -89,7 +95,7 @@ const upload = multer({
 });
 
 router.post('/', upload.single('image'), async function(req, res, next) {
-  // const user = req.session.user;
+  const user = User.findById(userId);
 
   var tour = new Tour({
     // author: user._id,
@@ -111,7 +117,7 @@ router.post('/', upload.single('image'), async function(req, res, next) {
 
 router.post('/:id/course', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
-  const user = req.session.user;
+  const user = User.findById(userId);
 
   if (!tour) {
     return res.redirect('back');
@@ -119,9 +125,9 @@ router.post('/:id/course', async function(req, res, next) {
 
   var course = new Course({
     tour: tour._id,
-    title: req.body.title,
-    description: req.body.description, 
-    required_time: req.body
+    title: req.body.coursetitle,
+    description: req.body.coursedescription, 
+    required_time: req.body.courserequired_time
   });
   await course.save();
   await tour.save();
@@ -132,7 +138,7 @@ router.post('/:id/course', async function(req, res, next) {
 
 router.post('/:id/review', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
-  const user = req.session.user;
+  const user = User.findById(userId);
 
   if (!tour) {
     return res.redirect('back');
@@ -141,7 +147,6 @@ router.post('/:id/review', async function(req, res, next) {
   var review = new Review({
     tour: tour._id,
     user: user._id,
-    title: req.body.title,
     description: req.body.description
   });
   await review.save();

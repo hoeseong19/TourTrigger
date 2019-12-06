@@ -6,18 +6,8 @@ div(class="form-group")
 div(class="form-group")
   label(for="description") Description
   textarea.form-control(class="summernote", name="description", rows="5")= tour.description
-//- courses
-if courses
-  div(class="form-group")
-    label(for="course") Course
-    input.form-control.w-25.mr-1(type="text", name="course")
 
-    include ./_courseinput
-
-    ul(class="list-group list-group-flush courselist") 
-      
-
-//- price
+//- image
 div(class="form-group")
   label(for="image") Image
   input.form-control(type="file", name="image")
