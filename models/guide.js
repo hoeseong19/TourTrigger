@@ -5,11 +5,9 @@ var mongoose = require('mongoose'),
 var schema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   name: {type: String, trim: true},
-  email: {type: String, index: true, unique: true, trim: true},
-  password: {type: String, trim: true},
+  description: {type: String, trim: true}, 
   reg_date: {type: Date, default: Date.now}, 
-  
-  image: {type: String}
+  image: {type: String, default: "/public/images/noun_Tour Guide_2476937.png"}
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

@@ -6,14 +6,8 @@ const Course = require("../models/course");
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
-const cities = require("all-the-cities-mongodb")
- 
-// cities.filter(city => {
-//   return city.name.match('Albuquerque')
-// })
+const cities = require("all-the-cities-mongodb");
 const router = express.Router();
-
-var userId = "5de36871d067d65f042de56c";
 
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;

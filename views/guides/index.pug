@@ -1,0 +1,14 @@
+extends ../layout
+
+include ../includes/_pagination
+
+block content
+  .container.my-5
+    each guide in guides.docs
+      a(href=`/guides/${guide._id}`)
+        div(class="card guide my-3") 
+          h5(class="card-header")= guide.user.email
+          div(class="card-body") 
+            a(class="btn btn-outline-secondary mr-1 admin" href='#' role="button")  #[i(class="far fa-edit")] Edit
+            a(class="btn btn-outline-danger mr-1" href='#' role="button")  #[i(class="far fa-trash-alt")] Delete
+    +pagination(guides, '/guides')
