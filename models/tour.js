@@ -3,12 +3,13 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-  author: { type: Schema.Types.ObjectId, ref: 'User' },
-  title: {type: String, trim: true, required: true},
-  price: {type: String, trim: true, required: true}, 
-  description: {type: String, trim: true, required: true},
+  guide: { type: Schema.Types.ObjectId, ref: 'Guide' },
+  title: {type: String, trim: true},
+  price: {type: String, trim: true}, 
+  description: {type: String, trim: true},
   image: {type: String}, 
-  reg_date: {type: Date, default: Date.now}
+  reg_date: {type: Date, default: Date.now}, 
+  category: {type: String}
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

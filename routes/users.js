@@ -34,8 +34,7 @@ router.post('/', async function(req, res, next) {
   var user = new User({
     name: req.body.name, 
     email: req.body.email, 
-    password: hash, 
-    group: "tourist"
+    password: hash
   });
   await user.save();
   res.redirect('/');
