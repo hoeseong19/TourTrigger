@@ -1,5 +1,5 @@
 var express = require('express');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var User = require("../models/user");
 var Reservation = require("../models/reservation");
 var router = express.Router();

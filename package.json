@@ -8,7 +8,7 @@
   "dependencies": {
     "all-the-cities-mongodb": "^1.0.1",
     "aos": "^2.3.4",
-    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "clean-css": "^4.2.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
@@ -24,6 +24,7 @@
     "mongoose-paginate": "^5.0.3",
     "morgan": "~1.9.1",
     "multer": "^1.4.2",
+    "node-sass": "^4.13.0",
     "node-sass-middleware": "0.11.0",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
