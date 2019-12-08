@@ -8,6 +8,7 @@ block content
         label(for="image") Image
         input.form-control(type="file", name="image")
 
+      //- name
       div(class="form-group") 
         label(for="name") name
         input(type="text", class="form-control", autocomplete="off", placeholder="name", name="name") 
@@ -16,19 +17,10 @@ block content
       div(class="form-group")
         label(for="description") Description
         textarea.form-control(class="summernote", name="description", rows="5")= guide.description
-
-      div(class="form-row") 
-        div(class="form-group col-md-4") 
-          label(for="country") State
-          select(id="country" class="form-control") 
-            each country in countries
-              option= country
-        div(class="form-group col-md-4") 
-          label(for="city") State
-          select(id="city" class="form-control") 
             
-          
-        
-      
+      //- city
+      div(class="form-group") 
+        label(for="city") city
+        input(type="text", class="form-control", autocomplete="off", placeholder="city", name="city") 
 
       button(type="submit", class="btn btn-primary") Submit

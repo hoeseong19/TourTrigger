@@ -2,7 +2,9 @@ extends ../layout
 
 block content
   .container.my-5
-    button(type="button", class="btn btn-outline-secondary float-right") #[i(class="far fa-edit")] Edit 
+    if(guide)
+      a(role="button", href=`/guides/${guide._id}`, class="btn btn-outline-secondary float-right") #[i(class="far fa-flag")] Guide 
+    a(role="button", href='#', class="btn btn-outline-secondary float-right") #[i(class="far fa-edit")] Edit 
 
     .clearfix.mb-4
 

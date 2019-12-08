@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .container.my-5
+    button(type="button", href='#', class="btn btn-outline-secondary float-right") #[i(class="far fa-edit")] Edit 
+
+    .clearfix.mb-4
+
+    #profile
+      img(src= guide.image, class="mx-auto w-25 h-25")
+      .mx-auto !{guide.city}
+      .clearfix.my-4
+
+    .clearfix.my-4
+      
+    .py-5 !{guide.description}
+
+    .clearfix.my-4
+      
+    h3 개설한 여행
+    ul(class="list-group list-group-flush")

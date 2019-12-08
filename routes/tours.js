@@ -6,8 +6,16 @@ const Course = require("../models/course");
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
-const cities = require("all-the-cities-mongodb");
 const router = express.Router();
+
+function needAuth(req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    req.flash('danger', 'Please signin first.');
+    res.redirect('/signin');
+  }
+}
 
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
@@ -93,11 +101,11 @@ const upload = multer({
   }
 });
 
-router.post('/', upload.single('image'), async function(req, res, next) {
-  const user = User.findById(userId);
+router.post('/', needAuth, upload.single('image'), async function(req, res, next) {
+  const user = req.session.user;
 
   var tour = new Tour({
-    // author: user._id,
+    author: user._id,
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,

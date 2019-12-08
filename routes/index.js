@@ -12,6 +12,12 @@ router.get('/signin', function(req, res, next) {
   res.render('signin');
 });
 
+router.get('/signout', function(req, res, next) {
+  delete req.session.user;
+  req.flash('success', 'Successfully signed out.');
+  res.redirect('/');
+});
+
 router.post('/signin', function(req, res, next) { 
   User.findOne({email: req.body.email}, function(err, user){
     if (err) {

@@ -9,7 +9,8 @@ var schema = new Schema({
   description: {type: String, trim: true},
   image: {type: String}, 
   reg_date: {type: Date, default: Date.now}, 
-  category: {type: String}
+  category: {type: String}, 
+  city: {type: String}
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
