@@ -7,4 +7,5 @@ block content
     each tour in tours.docs
       include _tourcard
     +pagination(tours, '/tours')
-    a(class="btn btn-primary float-right mb-5" href="/tours/new" role="button") new
+    if(currentUser.guide)
+      a(class="btn btn-primary float-right mb-5" href="/tours/new" role="button") new

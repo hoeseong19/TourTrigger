@@ -4,12 +4,13 @@ include ../includes/_pagination
 
 block content
   .container.my-5
+    h1 Guide
     each guide in guides.docs
       a(href=`/guides/${guide._id}`)
         div(class="card guide my-3") 
           h5(class="card-header")= guide.name
-          div(class="card-body") 
-            p(class="card-text") user: !{guide.user.email}
-            a(class="btn btn-outline-secondary mr-1 admin" href='#' role="button")  #[i(class="far fa-edit")] Edit
+          div(class="card-body d-flex") 
+            p(class="card-text") User Email: !{guide.user.email}
+            a(class="btn btn-outline-secondary mr-1 admin ml-auto" href='#' role="button")  #[i(class="far fa-edit")] Edit
             a(class="btn btn-outline-danger mr-1" href='#' role="button")  #[i(class="far fa-trash-alt")] Delete
     +pagination(guides, '/guides')

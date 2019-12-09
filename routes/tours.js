@@ -1,5 +1,6 @@
 const express = require('express');
 const Tour = require('../models/tour');
+const Guide = require('../models/guide');
 const Review = require('../models/review');
 const Reservation = require('../models/reservation');
 const Course = require("../models/course");
@@ -103,12 +104,15 @@ const upload = multer({
 
 router.post('/', needAuth, upload.single('image'), async function(req, res, next) {
   const user = req.session.user;
+  const guide = await Guide.find({user: user._id});
 
   var tour = new Tour({
-    author: user._id,
+    author: guide._id,
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
+    category: req.body.category, 
+    city: guide.city
   });
   if (req.file) {
     const dest = path.join(__dirname, '../public/images/uploads/');  // 옮길 디렉토리
@@ -124,7 +128,6 @@ router.post('/', needAuth, upload.single('image'), async function(req, res, next
 
 router.post('/:id/course', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
-  const user = User.findById(userId);
 
   if (!tour) {
     return res.redirect('back');

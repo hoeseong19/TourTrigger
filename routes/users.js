@@ -36,10 +36,7 @@ router.get('/:id', needAuth, async function(req, res, next) {
   var guide = await Guide.find({user: user._id});
 
   await user.save();
-  if(guide)
-    res.render("users/show", {user: user, guide: guide});
-  else
-    res.render("users/show", {user: user});
+  res.render("users/show", {user: user, guide: guide});
 });
 
 router.post('/', async function(req, res, next) {
