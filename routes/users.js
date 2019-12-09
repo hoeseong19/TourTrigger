@@ -2,6 +2,7 @@ var express = require('express');
 var bcrypt = require('bcryptjs');
 var User = require("../models/user");
 var Guide = require("../models/guide");
+var Tour = require("../models/tour");
 var Reservation = require("../models/reservation");
 var router = express.Router();
 
@@ -34,12 +35,14 @@ router.get('/new', function(req, res, next) {
 router.get('/:id', needAuth, async function(req, res, next) {
   var user = await User.findById(req.params.id);
   var guide = await Guide.findOne({user: user._id});
+  var reservations = await Reservation.find({user: user._id}).populate('tour');
+  
 
   await user.save();
   if(user.guide)
-    res.render("users/show", {user: user, guide: guide});
+    res.render("users/show", {user: user, guide: guide, reservations: reservations});
   else
-    res.render("users/show", {user: user}); 
+    res.render("users/show", {user: user, reservations: reservations}); 
 });
 
 router.post('/', async function(req, res, next) {

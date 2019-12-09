@@ -1,9 +1,10 @@
 extends ../layout
 
 include ../includes/_pagination
+include ../includes/_tourcard
 
 block content
   .container.my-5
     each tour in tours.docs
-      include ../includes/_tourcard
+      +tourcard(tour)
     +pagination(tours, '/tours')

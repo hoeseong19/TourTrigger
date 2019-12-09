@@ -2,35 +2,46 @@ extends ../layout
 
 block content
   .container.my-5
-    if tour.image
-      img.img-fluid(src= tour.image)
+    .row
+      .col-md-8
+        if tour.image
+          img.img-fluid(src= tour.image)
 
-    h1= tour.title
+        h1= tour.title
 
-    a(class="btn btn-outline-secondary mr-1 admin" href=`/tours/${tour._id}/edit` role="button")  #[i(class="far fa-edit")] Edit
-    |
-    a(class="btn btn-outline-danger mr-1" href=`/tours/${tour._id}?_method=delete` role="button")  #[i(class="far fa-trash-alt")] Delete
+        a(class="btn btn-outline-secondary mr-1 admin float-right" href=`/tours/${tour._id}/edit` role="button")  #[i(class="far fa-edit")] Edit
+        |
+        a(class="btn btn-outline-danger mr-1 float-right" href=`/tours/${tour._id}?_method=delete` role="button")  #[i(class="far fa-trash-alt")] Delete
 
-    .clearfix.p-3.border-bottom
+        .clearfix.p-3.border-bottom
 
-    .py-5 !{tour.description}
+        .py-5 !{tour.description}
 
-    //- courses
-    if courses
-      include ./_courseinput
+        //- courses
+        if courses
+          include ./_courseinput
 
-      each course in courses
-        div(class="list-group list-group-flush courselist")
-          include ./_course
+          each course in courses
+            div(class="list-group list-group-flush courselist")
+              include ./_course
 
-    .my-5
-      span.mr-3 !{tour.price} &#8361; /인
-      a(class="btn btn-outline-primary mr-3" href=`/tours/${tour._id}/reserve` role="button") 예약하기
+        .my-5
+          span.mr-3 !{tour.price} &#8361; /인
 
-    .clearfix.p-3.border-bottom
+        .clearfix.p-3.border-bottom
 
-    //- reviews
-    if reviews
-      each review in reviews
-        div(class="list-group list-group-flush reviewlist")
-          include ./_review
+        //- reviews
+        if reviews
+          each review in reviews
+            div(class="list-group list-group-flush reviewlist")
+              include ./_review
+      .col-md-4
+        div(class="card sticky bg-secondary") 
+          div(class="card-header") 
+            a(href=`/guides/${tour.guide._id}`)= tour.guide.name
+          div(class="card-body") 
+            h5(class="card-title") 가격
+            div(class="ml-auto mb-5") !{tour.price} &#8361; /인
+            a(class="btn btn-outline-primary mr-3 btn-block" href=`/tours/${tour._id}/reserve` role="button") 예약하기
+          
+        

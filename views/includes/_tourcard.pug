@@ -1,7 +1,8 @@
-div(data-aos="fade-up")  
-  a(href=`/tours/${tour._id}`)
-    div(class="card tour my-3") 
-      div(class="card-body")
-        small= tour.category
-        h5= tour.title
-        small made by !{tour.guide}
+mixin tourcard(docs)
+  div(data-aos="fade-up")  
+    a(href=`/tours/${docs._id}`)
+      div(class="card tour my-3") 
+        div(class="card-body")
+          small= docs.category
+          h5= docs.title
+          small made by !{docs.guide}

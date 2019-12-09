@@ -2,12 +2,20 @@ extends ../layout
 
 block content
   .container.my-5
-    form(action=`/users/${user._id}/tours`, method="POST")
+    form(action=`/tours/${tour._id}/reserve`, method="POST")
       h2 현재 예약 중인 여행
-      include _tourcard
+      include ../includes/_tourcard
 
-      //- form
+      .row
+        //- title
+        div(class="form-group col")
+          label(for="reserved_date") Date
+          input.form-control(type="date", name="reserved_date")
+        
+        div(class="form-group col") 
+          label(for="people") Number Of Person
+          select(class="form-control" id="people", name="people") 
+            - for(var i=0; i<20; i++)
+                option= (i+1)
 
-      button(type="submit", class="btn btn-primary") 예약하기
-
-    
+      button(type="submit", class="btn btn-primary float-right") 예약하기

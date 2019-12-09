@@ -49,7 +49,7 @@ router.get('/:id/reserve', async function(req, res, next) {
 });
 
 router.get('/:id', async function(req, res, next) {
-  const tour = await Tour.findById(req.params.id);
+  const tour = await Tour.findById(req.params.id).populate('guide');
   const courses = await Course.find({tour: tour._id});
   const reviews = await Review.find({tour: tour._id});
 
@@ -164,6 +164,26 @@ router.post('/:id/review', async function(req, res, next) {
   await tour.save();
 
   req.flash('success', 'Successfully posted');
+  res.redirect(`/tours/${req.params.id}`);
+});
+
+router.post('/:id/reserve', async function(req, res, next) {
+  const tour = await Tour.findById(req.params.id);
+  const user = req.session.user;
+
+  if (!tour) {
+    return res.redirect('back');
+  }
+
+  var reservation = new Reservation({
+    tour: tour._id,
+    user: user._id,
+    reserved_date: req.body.required_date,
+    people: req.body.people
+  });
+  await reservation.save();
+
+  req.flash('success', 'Successfully reserved');
   res.redirect(`/tours/${req.params.id}`);
 });
 
