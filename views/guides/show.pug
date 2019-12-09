@@ -20,4 +20,5 @@ block content
     h3 개설한 여행
     a(role="button", href='/tours/new', class="btn btn-outline-primary btn-block mb-3") #[i(class="fas fa-plus")] NEW 
 
-    ul(class="list-group list-group-flush")
+    each tour in tours
+      include ../includes/_tourcard

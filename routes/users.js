@@ -33,10 +33,13 @@ router.get('/new', function(req, res, next) {
 
 router.get('/:id', needAuth, async function(req, res, next) {
   var user = await User.findById(req.params.id);
-  var guide = await Guide.find({user: user._id});
+  var guide = await Guide.findOne({user: user._id});
 
   await user.save();
-  res.render("users/show", {user: user, guide: guide});
+  if(user.guide)
+    res.render("users/show", {user: user, guide: guide});
+  else
+    res.render("users/show", {user: user}); 
 });
 
 router.post('/', async function(req, res, next) {

@@ -21,7 +21,7 @@ function needAuth(req, res, next) {
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
 
-  Tour.paginate({}, { page: page, limit: 10 }, function(err, tours) {
+  Tour.paginate({}, { page: page, limit: 10, populate: 'guide' }, function(err, tours) {
     if (err) {
       return next(err);
     }
@@ -104,10 +104,11 @@ const upload = multer({
 
 router.post('/', needAuth, upload.single('image'), async function(req, res, next) {
   const user = req.session.user;
-  const guide = await Guide.find({user: user._id});
+  // 왜 find는 못 찾을까
+  const guide = await Guide.findOne({user: user._id});
 
   var tour = new Tour({
-    author: guide._id,
+    guide: guide._id,
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,

@@ -2,7 +2,8 @@ extends ../layout
 
 block content
   .container.my-5
-    a(role="button", href=`/guides/${guide._id}`, class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-flag")] Guide 
+    if(guide)
+      a(role="button", href=`/guides/${guide._id}`, class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-flag")] Guide 
     a(role="button", href='#', class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-edit")] Edit 
 
     .clearfix.mb-4

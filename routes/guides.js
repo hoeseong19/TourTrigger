@@ -1,7 +1,6 @@
 var express = require('express');
-var User = require("../models/user");
 var Guide = require("../models/guide");
-var Reservation = require("../models/reservation");
+var Tour = require("../models/tour");
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
@@ -35,8 +34,9 @@ router.get('/new', needAuth, function(req, res, next) {
 
 router.get('/:id', async function(req, res, next) {
   const guide = await Guide.findById(req.params.id);
+  const tours = await Tour.find({guide: guide._id});
   await guide.save();
-  res.render("guides/show", {guide: guide});
+  res.render("guides/show", {guide: guide, tours: tours});
 });
 
 router.post('/', async function(req, res, next) {
