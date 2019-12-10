@@ -8,7 +8,7 @@ const path = require('path');
 var router = express.Router();
 
 function needAuth(req, res, next) {
-  if (req.session.user) {
+  if (req.isAuthenticated()) {
     next();
   } else {
     req.flash('danger', 'Please signin first.');
@@ -41,7 +41,7 @@ router.get('/:id', async function(req, res, next) {
 });
 
 router.post('/', async function(req, res, next) {
-  const user = await User.findById(req.session.user.id);
+  const user = req.user;
   user.guide = true;
   console.log("USER????", user);
   var guide = new Guide({

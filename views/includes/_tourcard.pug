@@ -4,4 +4,5 @@ div(data-aos="fade-up")
       div(class="card-body")
         small= tour.category
         h3= tour.title
-        small= tour.guide.name
+        if tour.guide
+          small made by !{tour.guide.name}

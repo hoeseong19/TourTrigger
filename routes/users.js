@@ -7,7 +7,7 @@ var Reservation = require("../models/reservation");
 var router = express.Router();
 
 function needAuth(req, res, next) {
-  if (req.user) {
+  if (req.isAuthenticated()) {
     next();
   } else {
     req.flash('danger', 'Please signin first.');
@@ -36,13 +36,14 @@ router.get('/:id', needAuth, async function(req, res, next) {
   var user = await User.findById(req.params.id);
   var guide = await Guide.findOne({user: user._id});
   var reservations = await Reservation.find({user: user._id}).populate('tour');
-  
+  // var tours = await Tour.find({tour: reservations.tour.id});
+  console.log("reserve?????", reservations);
 
   await user.save();
   if(user.guide)
-    res.render("users/show", {user: user, guide: guide, reservations: reservations});
+    res.render("users/show", {user: user, guide: guide, tours: tours});
   else
-    res.render("users/show", {user: user, reservations: reservations}); 
+    res.render("users/show", {user: user, tours: tours}); 
 });
 
 router.post('/', async function(req, res, next) {

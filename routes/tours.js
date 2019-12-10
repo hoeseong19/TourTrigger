@@ -10,7 +10,7 @@ const path = require('path');
 const router = express.Router();
 
 function needAuth(req, res, next) {
-  if (req.session.user) {
+  if (req.isAuthenticated()) {
     next();
   } else {
     req.flash('danger', 'Please signin first.');
@@ -103,7 +103,7 @@ const upload = multer({
 });
 
 router.post('/', needAuth, upload.single('image'), async function(req, res, next) {
-  const user = req.session.user;
+  const user = req.user;
   // 왜 find는 못 찾을까
   const guide = await Guide.findOne({user: user._id});
 
@@ -169,7 +169,7 @@ router.post('/:id/review', async function(req, res, next) {
 
 router.post('/:id/reserve', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
-  const user = req.session.user;
+  const user = req.user;
 
   if (!tour) {
     return res.redirect('back');
