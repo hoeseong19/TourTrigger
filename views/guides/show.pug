@@ -22,3 +22,5 @@ block content
 
     each tour in tours
       include ../includes/_tourcard
+      a(role="button", href=`/tours/${tour._id}/edit`, class="btn btn-outline-secondary mr-1") #[i(class="fas fa-edit")] EDIT 
+      a(class="btn btn-outline-danger mr-1" href=`/tours/${tour._id}?_method=delete` role="button")  #[i(class="far fa-trash-alt")] Delete

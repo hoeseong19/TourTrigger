@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     mongoosePaginate = require('mongoose-paginate'),
+    bcrypt = require("bcryptjs")
     Schema = mongoose.Schema;
 
 var schema = new Schema({
@@ -13,6 +14,15 @@ var schema = new Schema({
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
 });
+
+schema.methods.generateHash = function(password) {
+  return bcrypt.hash(password, 10); // return Promise
+};
+
+schema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password); // return Promise
+};
+
 schema.plugin(mongoosePaginate);
 var User = mongoose.model('User', schema);
 

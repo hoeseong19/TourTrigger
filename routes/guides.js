@@ -1,6 +1,7 @@
 var express = require('express');
 var Guide = require("../models/guide");
 var Tour = require("../models/tour");
+var User = require("../models/user");
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
@@ -34,15 +35,15 @@ router.get('/new', needAuth, function(req, res, next) {
 
 router.get('/:id', async function(req, res, next) {
   const guide = await Guide.findById(req.params.id);
-  const tours = await Tour.find({guide: guide._id});
+  const tours = await Tour.find({guide: guide._id}).populate('guide');
   await guide.save();
   res.render("guides/show", {guide: guide, tours: tours});
 });
 
 router.post('/', async function(req, res, next) {
-  const user = req.session.user;
+  const user = await User.findById(req.session.user.id);
   user.guide = true;
-
+  console.log("USER????", user);
   var guide = new Guide({
     user: user._id, 
     name: req.body.name, 

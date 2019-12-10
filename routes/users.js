@@ -7,7 +7,7 @@ var Reservation = require("../models/reservation");
 var router = express.Router();
 
 function needAuth(req, res, next) {
-  if (req.session.user) {
+  if (req.user) {
     next();
   } else {
     req.flash('danger', 'Please signin first.');

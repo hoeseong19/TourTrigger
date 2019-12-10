@@ -8,11 +8,14 @@ var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var session = require('express-session');
+var passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var toursRouter = require('./routes/tours');
 var guidesRouter = require('./routes/guides');
+
+var passportConfig = require('./lib/passport-config');
 
 var app = express();
 
@@ -51,8 +54,12 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
+passportConfig(passport);
+
 app.use(function(req, res, next) {
-  res.locals.currentUser = req.session.user;
+  res.locals.currentUser = req.user;
   res.locals.flashMessages = req.flash();
   next();
 });
@@ -61,6 +68,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tours', toursRouter);
 app.use('/guides', guidesRouter);
+require('./routes/auth')(app, passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
