@@ -59,6 +59,7 @@ app.use(passport.session());
 passportConfig(passport);
 
 app.use(function(req, res, next) {
+  res.locals.google_maps_api_key = process.env.GOOGLE_MAPS_API_KEY;
   res.locals.currentUser = req.user;
   res.locals.flashMessages = req.flash();
   next();

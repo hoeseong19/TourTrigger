@@ -10,7 +10,8 @@ var schema = new Schema({
   image: {type: String}, 
   reg_date: {type: Date, default: Date.now}, 
   category: {type: String, enum: ["가이드투어", "티켓", "액티비티", "스냅촬영", "레스토랑", "즐길거리", "여행편의"], required: true}, 
-  city: {type: String}
+  city: {type: String}, 
+  numReviews: {type: Number}
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

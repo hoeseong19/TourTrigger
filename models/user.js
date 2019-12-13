@@ -1,7 +1,17 @@
 var mongoose = require('mongoose'),
     mongoosePaginate = require('mongoose-paginate'),
-    bcrypt = require("bcryptjs")
+    bcrypt = require("bcryptjs");
     Schema = mongoose.Schema;
+
+var reservationsschema = new Schema({
+  tour: { type: Schema.Types.ObjectId, ref: 'Tour' },
+  reserved_date: {type: Date},
+  people: {type: Number}, 
+  reg_date: {type: Date, default: Date.now}
+}, {
+  toJSON: { virtuals: true},
+  toObject: {virtuals: true}
+});
 
 var schema = new Schema({
   name: {type: String, required: true, trim: true},
@@ -9,7 +19,9 @@ var schema = new Schema({
   password: {type: String, required: true, trim: true},
   reg_date: {type: Date, default: Date.now}, 
   guide: {type: Boolean, default: false}, 
-  image: {type: String, default: "/public/images/noun_User_3011958.png"}
+  facebook: {id: String, token: String, photo: String}, 
+  image: {type: String, default: "/public/images/noun_User_3011958.png"}, 
+  reservations: [reservationsschema], 
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

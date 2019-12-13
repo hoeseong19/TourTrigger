@@ -7,6 +7,7 @@ const Course = require("../models/course");
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
+const googlemap = require('../public/javascripts/googlemaps');
 const router = express.Router();
 
 function needAuth(req, res, next) {
@@ -21,13 +22,22 @@ function needAuth(req, res, next) {
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
 
-  Tour.paginate({}, { page: page, limit: 10, populate: 'guide' }, function(err, tours) {
+  var query = {};
+  const term = req.query.term;
+  if (term) {
+    query = {$or: [
+      {title: {'$regex': term, '$options': 'i'}},
+      {content: {'$regex': term, '$options': 'i'}}
+    ]};
+  }
+
+  Tour.paginate(query, { page: page, limit: 10, populate: 'guide' }, function(err, tours) {
     if (err) {
       return next(err);
     }
     console.log("err", err);
     
-    res.render('tours/index', {tours: tours});
+    res.render('tours/index', {tours: tours, term: term, query: req.query});
   });
 });
 
@@ -138,7 +148,9 @@ router.post('/:id/course', async function(req, res, next) {
     tour: tour._id,
     title: req.body.coursetitle,
     description: req.body.coursedescription, 
-    required_time: req.body.courserequired_time
+    required_time: req.body.courserequired_time, 
+    latitude: req.body.courselat, 
+    longitude: req.body.courselng
   });
   await course.save();
   await tour.save();
