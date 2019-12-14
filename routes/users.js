@@ -2,6 +2,7 @@ var express = require('express');
 var User = require("../models/user");
 var Guide = require("../models/guide");
 var Tour = require("../models/tour");
+var Reservation = require("../models/reservation");
 var router = express.Router();
 
 function needAuth(req, res, next) {
@@ -33,8 +34,13 @@ router.get('/new', function(req, res, next) {
 router.get('/:id', needAuth, async function(req, res, next) {
   var user = await User.findById(req.params.id);
   var guide = await Guide.findOne({user: user._id});
-  var tours = await Tour.findById(reservations.tour._id);
-  console.log("reserve?????", reservations[0].tour);
+  var tmp = [];
+  var reservations = await Reservation.find({user: user.id});
+  for (var reservation of reservations) {
+    tmp.push(reservation.tour);
+  }
+
+  var tours = await Tour.find({_id : { $in: tmp }}).populate('guide');
 
   await user.save();
   if(user.guide)

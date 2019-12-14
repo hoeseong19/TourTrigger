@@ -69,11 +69,6 @@ router.get('/:id', async function(req, res, next) {
 
 router.put('/:id/update', async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
-  const courses = $(".courselist li").toArray();
-
-  const courselist = courses.map(function(course) {
-    return course.innerText;
-  });
 
   if (!tour) {
     req.flash('danger', 'Not existed tour');
@@ -83,7 +78,6 @@ router.put('/:id/update', async function(req, res, next) {
   tour.title = req.body.title;
   tour.description = req.body.description;
   tour.price = req.body.price;
-  tour.courses = courselist;
 
   await tour.save();
   req.flash('success', 'Successfully posted');
@@ -190,7 +184,7 @@ router.post('/:id/reserve', async function(req, res, next) {
   var reservation = new Reservation({
     tour: tour._id,
     user: user._id,
-    reserved_date: req.body.required_date,
+    reserved_date: req.body.reserved_date,
     people: req.body.people
   });
   await reservation.save();

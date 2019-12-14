@@ -1,12 +1,12 @@
 div(class="list-group-item mb-3") 
   .row
-    .col
+    .col-md-7
       div(class="d-flex w-100 justify-content-between") 
         h5(class="mb-1")= course.title
         small= course.required_time
       
       p(class="mb-1") !{course.description}
-    .col
+    .col-md-5
       .coursemap
         small= course.latitude
         small= course.longitude
