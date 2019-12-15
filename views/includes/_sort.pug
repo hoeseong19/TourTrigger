@@ -1,0 +1,19 @@
+mixin sort(link, params)
+  - 
+    var query = {};
+    for (let key in params) {
+      if (key !== 'sort') {
+        query[key] = params[key];
+      }
+    }
+    if (query) {
+      var url = `${link}?${querystring.stringify(query)}&sort=`;
+    } else {
+      var url = `${link}?sort=`;
+    }
+
+  ul(class="list-group list-group-horizontal") 
+    a(href=url + 'popularity', class="list-group-item list-group-item-action") 인기순
+    a(href=url + 'review', class="list-group-item list-group-item-action") 후기순
+    a(href=url + 'price', class="list-group-item list-group-item-action") 가격순
+    a(href=url + 'new', class="list-group-item list-group-item-action") 신상품순

@@ -17,14 +17,33 @@ function needAuth(req, res, next) {
 
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
+
+  var query = {};
+
+  var option = { page: page, limit: 10, populate: 'guide' };
+
   const category = req.query.category;
+  if (category)
+    query.category = category;
 
-  var query;
+  const sort = req.query.sort;
 
-  if(category)
-    query = {category: category};
-  else
-    query = {};
+  if(sort == 'review') {
+    option.sort = {numReviews: -1};
+  }
+
+  else if(sort == 'price') {
+    option.sort = {price: -1};
+  }
+
+  else if(sort == 'new') {
+    option.sort = {reg_date: -1};
+  }
+
+  else {
+    option.sort = {numReserves: -1};
+  }
+  
 
   const term = req.query.term;
   if (term) {
@@ -34,7 +53,7 @@ router.get('/', function(req, res, next) {
     ]};
   }
 
-  Tour.paginate(query, { page: page, limit: 10, populate: 'guide' }, function(err, tours) {
+  Tour.paginate(query, option, function(err, tours) {
     if (err) {
       return next(err);
     }
@@ -171,10 +190,12 @@ router.post('/:id/reserve', async function(req, res, next) {
     reserved_date: req.body.reserved_date,
     people: req.body.people
   });
+  tour.numReserves++;
   await reservation.save();
+  await tour.save();
 
   req.flash('success', 'Successfully reserved');
-  res.redirect(`/tours/${req.params.id}`);
+  res.redirect(`/users/${user.id}`);
 });
 
 module.exports = router;

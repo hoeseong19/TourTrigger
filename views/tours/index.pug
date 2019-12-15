@@ -2,13 +2,19 @@ extends ../layout
 
 include ../includes/_pagination
 include ../includes/_filter
+include ../includes/_sort
 
 block content
   .container.my-5
+    .float-right.row
+      +sort('/tours', query)
+
+    .clearfix.p-3.border-bottom
+    
     .row
       .col-md-3
-        +filter('/tours')
+        +filter('/tours', query)
       .col-md-9
         each tour in tours.docs
           include ../includes/_tourcard
-        +pagination(tours, '/tours')
+        +pagination(tours, '/tours', query)
