@@ -14,6 +14,35 @@ function needAuth(req, res, next) {
   }
 }
 
+function validateForm(form, options) {
+  var name = form.name || "";
+  var email = form.email || "";
+  name = name.trim();
+  email = email.trim();
+
+  if (!name) {
+    return 'Name is required.';
+  }
+
+  if (!email) {
+    return 'Email is required.';
+  }
+
+  if (!form.password && options.needPassword) {
+    return 'Password is required.';
+  }
+
+  if (form.password !== form.password_confirmation) {
+    return 'Passsword do not match.';
+  }
+
+  if (form.password.length < 6) {
+    return 'Password must be at least 6 characters.';
+  }
+
+  return null;
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
@@ -47,6 +76,19 @@ router.get('/:id', needAuth, async function(req, res, next) {
     res.render("users/show", {user: user, guide: guide, tours: tours});
   else
     res.render("users/show", {user: user, tours: tours}); 
+});
+
+router.delete('/:id/reserve', needAuth, async function(req, res, next) {
+  const user = await User.findOne({_id: req.params.id});
+  await Reservation.findOneAndDelete({user: user.id});
+  req.flash('success', 'Successfully deleted');
+  res.redirect('/tours');
+});
+
+router.delete('/:id', needAuth, async function(req, res, next) {
+  await User.findOneAndRemove({_id: req.params.id});
+  req.flash('success', 'Successfully deleted');
+  res.redirect('/tours');
 });
 
 router.post('/', async function(req, res, next) {

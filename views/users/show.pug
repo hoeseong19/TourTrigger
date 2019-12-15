@@ -2,14 +2,14 @@ extends ../layout
 
 block content
   .container.my-5
+    a(role="button", href='#', class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-edit")] Edit 
     if(guide)
       a(role="button", href=`/guides/${guide._id}`, class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-flag")] Guide 
-    a(role="button", href='#', class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-edit")] Edit 
 
     .clearfix.mb-4
 
     #profile
-      img(src="/images/profileTest.jpg", class="mx-auto w-25 h-25")
+      img(src="/images/profileTest.jpg", class="mx-auto pt-3 w-25 h-25")
       .clearfix.my-4
       //- .unsplash
       //-   a(class="float-right", href="https://unsplash.com/@demidearest?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge", target="_blank", rel="noopener noreferrer", title="Download free do whatever you want high-resolution photos from Demi DeHerrera")
@@ -31,8 +31,10 @@ block content
         .col-md-9
           =user.email
 
+    .clearfix.my-4
 
-
+    .mx-auto.d-flex.justify-content-center.need-confirm-btn
+      a(href=`/users/${user._id}?_method=delete`) 회원탈퇴
 
     .clearfix.my-4
 
@@ -42,3 +44,4 @@ block content
       
     each tour in tours
       include ../includes/_tourcard
+      a(class="btn btn-outline-danger mr-1 float-right need-confirm-btn", href=`/users/${user._id}/reserve?_method=delete`, role="button")  #[i(class="far fa-trash-alt")] 예약취소

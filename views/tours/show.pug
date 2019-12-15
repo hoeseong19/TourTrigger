@@ -9,9 +9,9 @@ block content
 
         h1= tour.title
 
-        a(class="btn btn-outline-secondary mr-1 admin float-right" href=`/tours/${tour._id}/edit` role="button")  #[i(class="far fa-edit")] Edit
+        a(class="btn btn-outline-secondary mr-1 admin float-right", href=`/tours/${tour._id}/edit`, role="button")  #[i(class="far fa-edit")] Edit
         |
-        a(class="btn btn-outline-danger mr-1 float-right" href=`/tours/${tour._id}?_method=delete` role="button")  #[i(class="far fa-trash-alt")] Delete
+        a(class="btn btn-outline-danger mr-1 float-right", href=`/tours/${tour._id}?_method=delete`, role="button")  #[i(class="far fa-trash-alt")] Delete
 
         .clearfix.p-3.border-bottom
 
@@ -39,6 +39,6 @@ block content
           div(class="card-body") 
             h5(class="card-title") 가격
             div(class="ml-auto mb-5") !{tour.price} &#8361; /인
-            a(class="btn btn-outline-primary mr-3 btn-block" href=`/tours/${tour._id}/reserve` role="button") 예약하기
+            a(class="btn btn-outline-primary mr-3 btn-block", href=`/tours/${tour._id}/reserve`, role="button") 예약하기
           
         
