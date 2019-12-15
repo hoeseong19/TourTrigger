@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 var schema = new Schema({
   tour: { type: Schema.Types.ObjectId, ref: 'Tour' },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
+  reg_date: {type: Date, default: Date.now}
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

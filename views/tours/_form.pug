@@ -8,9 +8,11 @@ div(class="form-group")
   textarea.form-control(class="summernote", name="description", rows="5")= tour.description
 
 //- image
-div(class="form-group")
+.form-group
   label(for="image") Image
-  input.form-control(type="file", name="image")
+  input#file.form-control(type="file")
+  input#url.form-control(type="text", name="image", readonly='readonly', value="")
+  img#preview.img-fluid(src="https://dummyimage.com/200x200/ccc/fff")
   
 //- price
 div(class="form-group")

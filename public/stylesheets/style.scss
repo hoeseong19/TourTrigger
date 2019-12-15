@@ -20,6 +20,7 @@ body {
 }
 
 #profile {
+  background-color: #DDD;
   img {
     display: block;
     border-radius: 50%;
@@ -66,7 +67,13 @@ body {
 
 .card {
   img {
-    max-width: 540px;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0px;
+  }
+
+  .card-body {
+    padding: 0px;
   }
 }
 

@@ -1,8 +1,13 @@
 div(data-aos="fade-up")  
   a(href=`/tours/${tour._id}`)
     div(class="card tour mb-3") 
-      div(class="card-body")
-        small= tour.category
-        h3= tour.title
-        if tour.guide
-          small made by !{tour.guide.name}
+      .row
+        .col-md-4.tourimage
+          img(src=tour.image)
+        .col-md-8.tourdesc
+          div(class="card-body")
+            small= tour.category
+            i(class="far fa-heart float-right")
+            h3= tour.title
+            if tour.guide
+              small made by !{tour.guide.name}

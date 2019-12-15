@@ -11,13 +11,28 @@ block content
     #profile
       img(src="/images/profileTest.jpg", class="mx-auto w-25 h-25")
       .clearfix.my-4
-      .unsplash
-        a(class="float-right", href="https://unsplash.com/@demidearest?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge", target="_blank", rel="noopener noreferrer", title="Download free do whatever you want high-resolution photos from Demi DeHerrera")
-          span
-            svg(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 32 32")
-              title unsplash-logo
-              path(d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z")
-          span Demi DeHerrera
+      //- .unsplash
+      //-   a(class="float-right", href="https://unsplash.com/@demidearest?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge", target="_blank", rel="noopener noreferrer", title="Download free do whatever you want high-resolution photos from Demi DeHerrera")
+      //-     span
+      //-       svg(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 32 32")
+      //-         title unsplash-logo
+      //-         path(d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z")
+      //-     span Demi DeHerrera
+      
+      #name.row.mx-auto.mb-3
+        b.col-md-3.
+          이름
+        .col-md-9
+          =user.name
+
+      #email.row.mx-auto.mb-3
+        b.col-md-3.
+          이메일
+        .col-md-9
+          =user.email
+
+
+
 
     .clearfix.my-4
 

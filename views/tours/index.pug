@@ -7,23 +7,15 @@ block content
     .row
       .col-md-3
         div(class="card sticky bg-secondary") 
-          ul(class="list-group list-group-flush") 
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="fas fa-border-all")] 전체  
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="far fa-flag")] 가이드 투어
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="fas fa-ticket-alt")] 티켓
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="fas fa-bicycle")] 액티비티
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="fas fa-camera")] 스냅촬영
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="fas fa-utensils")] 레스토랑
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="fas fa-ship")] 즐길거리
-            li(class="list-group-item") 
-              button(type="button", class="btn btn-lg btn-block") #[i(class="fas fa-car-side")] 여행편의
+          div(class="btn-group-vertical" role="group" aria-label="Basic example")
+            button(type="button", class="btn btn-lg btn-info") #[i(class="fas fa-border-all")] 전체  
+            button(type="button", class="btn btn-lg btn-info") #[i(class="far fa-flag")] 가이드 투어
+            button(type="button", class="btn btn-lg btn-info") #[i(class="fas fa-ticket-alt")] 티켓
+            button(type="button", class="btn btn-lg btn-info") #[i(class="fas fa-bicycle")] 액티비티
+            button(type="button", class="btn btn-lg btn-info") #[i(class="fas fa-camera")] 스냅촬영
+            button(type="button", class="btn btn-lg btn-info") #[i(class="fas fa-utensils")] 레스토랑
+            button(type="button", class="btn btn-lg btn-info") #[i(class="fas fa-ship")] 즐길거리
+            button(type="button", class="btn btn-lg btn-info") #[i(class="fas fa-car-side")] 여행편의
       .col-md-9
         each tour in tours.docs
           include ../includes/_tourcard
