@@ -1,0 +1,24 @@
+mixin filter(link, params)
+  - 
+    var query = {};
+    for (let key in params) {
+      if (key !== 'category') {
+        query[key] = params[key];
+      }
+    }
+    if (query) {
+      var url = `${link}?${querystring.stringify(query)}&category=`;
+    } else {
+      var url = `${link}?category=`;
+    }
+
+  div(class="card sticky bg-secondary") 
+    div(class="btn-group-vertical" role="group" aria-label="Basic example")
+      a(href = link, type="button", class="btn btn-lg btn-info") #[i(class="fas fa-border-all")] 전체  
+      a(href = url + 'guide', type="button", class="btn btn-lg btn-info") #[i(class="far fa-flag")] 가이드 투어
+      a(href = url + 'ticket', type="button", class="btn btn-lg btn-info") #[i(class="fas fa-ticket-alt")] 티켓
+      a(href = url + 'activity', type="button", class="btn btn-lg btn-info") #[i(class="fas fa-bicycle")] 액티비티
+      a(href = url + 'snapshot', type="button", class="btn btn-lg btn-info") #[i(class="fas fa-camera")] 스냅촬영
+      a(href = url + 'restaurant', type="button", class="btn btn-lg btn-info") #[i(class="fas fa-utensils")] 레스토랑
+      a(href = url + 'entertainment', type="button", class="btn btn-lg btn-info") #[i(class="fas fa-ship")] 즐길거리
+      a(href = url + 'convenience', type="button", class="btn btn-lg btn-info") #[i(class="fas fa-car-side")] 여행편의

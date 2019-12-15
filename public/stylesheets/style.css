@@ -48,6 +48,7 @@ body {
   display: none; }
 
 .card img {
+  object-fit: fill;
   max-width: 100%;
   max-height: 100%;
   padding: 0px; }

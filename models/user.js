@@ -3,16 +3,6 @@ var mongoose = require('mongoose'),
     bcrypt = require("bcryptjs");
     Schema = mongoose.Schema;
 
-var reservationsschema = new Schema({
-  tour: { type: Schema.Types.ObjectId, ref: 'Tour' },
-  reserved_date: {type: Date},
-  people: {type: Number}, 
-  reg_date: {type: Date, default: Date.now}
-}, {
-  toJSON: { virtuals: true},
-  toObject: {virtuals: true}
-});
-
 var schema = new Schema({
   name: {type: String, required: true, trim: true},
   email: {type: String, required: true, index: true, unique: true, trim: true},
@@ -20,8 +10,7 @@ var schema = new Schema({
   reg_date: {type: Date, default: Date.now}, 
   guide: {type: Boolean, default: false}, 
   facebook: {id: String, token: String, photo: String}, 
-  image: {type: String, default: "/public/images/noun_User_3011958.png"}, 
-  reservations: [reservationsschema], 
+  image: {type: String, default: "/public/images/noun_User_3011958.png"} 
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

@@ -17,8 +17,15 @@ function needAuth(req, res, next) {
 
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page) || 1;
+  const category = req.query.category;
 
-  var query = {};
+  var query;
+
+  if(category)
+    query = {category: category};
+  else
+    query = {};
+
   const term = req.query.term;
   if (term) {
     query = {$or: [
@@ -63,8 +70,9 @@ router.get('/:id', async function(req, res, next) {
   res.render('tours/show', {tour: tour, courses: courses, reviews: reviews});
 });
 
-router.put('/:id/update', async function(req, res, next) {
+router.put('/:id/update', needAuth, async function(req, res, next) {
   const tour = await Tour.findById(req.params.id);
+  const guide = await Guide.findOne({user: req.user.id});
 
   if (!tour) {
     req.flash('danger', 'Not existed tour');
@@ -74,13 +82,16 @@ router.put('/:id/update', async function(req, res, next) {
   tour.title = req.body.title;
   tour.description = req.body.description;
   tour.price = req.body.price;
+  tour.category = req.body.category; 
+  tour.image = req.body.image;
+  tour.city = guide.city;
 
   await tour.save();
-  req.flash('success', 'Successfully posted');
+  req.flash('success', 'Successfully updated');
   res.redirect('/tours');
 });
 
-router.delete('/:id', async function(req, res, next) {
+router.delete('/:id', needAuth, async function(req, res, next) {
   await Tour.findOneAndRemove({_id: req.params.id});
   req.flash('success', 'Successfully deleted');
   res.redirect('/tours');
@@ -88,7 +99,6 @@ router.delete('/:id', async function(req, res, next) {
 
 router.post('/', needAuth, async function(req, res, next) {
   const user = req.user;
-  // 왜 find는 못 찾을까
   const guide = await Guide.findOne({user: user._id});
 
   var tour = new Tour({
@@ -96,6 +106,7 @@ router.post('/', needAuth, async function(req, res, next) {
     title: req.body.title,
     description: req.body.description,
     price: req.body.price,
+    image: req.body.image, 
     category: req.body.category, 
     city: guide.city
   });

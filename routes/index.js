@@ -30,7 +30,7 @@ router.get('/s3', function(req, res, next) {
     }
     res.json({
       signedRequest: data,
-      // 403 error solved by unabling first and second option in Block public acces
+      // 403 error solved by unabling first and second option in Block public access
       url: `https://${S3_BUCKET}.s3.amazonaws.com/${uuid}/${filename}`
     });
   });
