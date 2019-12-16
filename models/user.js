@@ -10,7 +10,7 @@ var schema = new Schema({
   reg_date: {type: Date, default: Date.now}, 
   guide: {type: Boolean, default: false}, 
   facebook: {id: String, token: String, photo: String}, 
-  image: {type: String, default: "/public/images/noun_User_3011958.png"} 
+  image: {type: String, default: "https://webprojectimages.s3.amazonaws.com/80df0a6d-5e50-4f2a-b65a-954869d6acf9/noun_User_3011958.png"} 
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

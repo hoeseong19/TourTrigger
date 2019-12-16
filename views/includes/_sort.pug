@@ -12,8 +12,8 @@ mixin sort(link, params)
       var url = `${link}?sort=`;
     }
 
-  ul(class="list-group list-group-horizontal") 
-    a(href=url + 'popularity', class="list-group-item list-group-item-action") 인기순
-    a(href=url + 'review', class="list-group-item list-group-item-action") 후기순
-    a(href=url + 'price', class="list-group-item list-group-item-action") 가격순
-    a(href=url + 'new', class="list-group-item list-group-item-action") 신상품순
+  ul(class="list-group-horizontal") 
+    a(href=url + 'popularity', class="list-group-item-action ml-3") 인기순
+    a(href=url + 'review', class="list-group-item-action ml-3") 후기순
+    a(href=url + 'price', class="list-group-item-action ml-3") 가격순
+    a(href=url + 'new', class="list-group-item-action ml-3") 신상품순

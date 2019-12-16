@@ -12,7 +12,8 @@ var schema = new Schema({
   category: {type: String, enum: ["guide", "ticket", "activity", "snapshot", "restaurant", "entertainment", "convenience"], required: true}, 
   city: {type: String}, 
   numReviews: {type: Number, default: 0}, 
-  numReserves: {type: Number, default: 0}
+  numReserves: {type: Number, default: 0}, 
+  numCourses: {type: Number, default: 0}
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

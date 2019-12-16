@@ -21,3 +21,20 @@ function placeMarkerAndPanTo(latLng, map, marker) {
   $("#maplat").val(marker.getPosition().lat());
   $("#maplng").val(marker.getPosition().lng());
 }
+
+$(function() {
+  $(".coursemap").each(function() {
+    var lat = parseInt($(".courselat").text());
+    var lng = parseInt($(".courselng").text());
+
+    var map = new google.maps.Map(this, {
+      zoom: 10,
+      center: {lat: lat, lng: lng }
+    });
+
+    var marker = new google.maps.Marker({
+      position: {lat: lat, lng: lng }, 
+      map: map
+    });
+  });
+});

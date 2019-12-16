@@ -60,6 +60,12 @@ router.get('/new', function(req, res, next) {
   res.render("users/new", {user: {}});
 });
 
+router.get('/:id/edit', async function(req, res, next) {
+  const user = await User.findById(req.params.id);
+
+  res.render('users/edit', {user: user});
+});
+
 router.get('/:id', needAuth, async function(req, res, next) {
   var user = await User.findById(req.params.id);
   var guide = await Guide.findOne({user: user._id});
@@ -76,6 +82,17 @@ router.get('/:id', needAuth, async function(req, res, next) {
     res.render("users/show", {user: user, guide: guide, tours: tours});
   else
     res.render("users/show", {user: user, tours: tours}); 
+});
+
+router.put('/:id/update', needAuth, async function(req, res, next) {
+  const user = await User.findById(req.params.id);
+
+  user.name = req.body.name;
+  user.image = req.body.image;
+
+  await user.save();
+  req.flash('success', 'Successfully updated');
+  res.redirect(`/users/${user.id}`);
 });
 
 router.delete('/:id/reserve', needAuth, async function(req, res, next) {

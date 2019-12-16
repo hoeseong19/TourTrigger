@@ -8,7 +8,7 @@ div(class="form-group")
   textarea.form-control(class="summernote", name="description", rows="5")= tour.description
 
 //- image
-.form-group
+div(class="form-group")
   label(for="image") Image
   input#file.form-control(type="file")
   input#url.form-control(type="text", name="image", readonly='readonly', value="")

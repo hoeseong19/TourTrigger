@@ -2,14 +2,14 @@ extends ../layout
 
 block content
   .container.my-5
-    a(role="button", href='#', class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-edit")] Edit 
+    a(role="button", href=`/users/${user._id}/edit`, class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-edit")] Edit 
     if(guide)
       a(role="button", href=`/guides/${guide._id}`, class="btn btn-outline-secondary float-right ml-3") #[i(class="far fa-flag")] Guide 
 
     .clearfix.mb-4
 
     #profile
-      img(src="/images/profileTest.jpg", class="mx-auto pt-3 w-25 h-25")
+      img(src=user.image, class="mx-auto pt-3 w-25 h-25")
       .clearfix.my-4
       //- .unsplash
       //-   a(class="float-right", href="https://unsplash.com/@demidearest?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge", target="_blank", rel="noopener noreferrer", title="Download free do whatever you want high-resolution photos from Demi DeHerrera")

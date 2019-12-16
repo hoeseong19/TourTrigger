@@ -7,7 +7,8 @@ var schema = new Schema({
   description:{type: String, trim: true},
   required_time:{type: Number}, 
   latitude: {type: Number},
-  longitude: {type: Number}
+  longitude: {type: Number}, 
+  sequence: {type: Number}
 }, { 
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
