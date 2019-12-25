@@ -87,3 +87,10 @@ body {
   position: sticky;
   top: 48px;
 }
+
+@media (max-width: 768px) {
+  html, body {
+    width: auto !important;
+    overflow-x: hidden !important;
+  }
+}
