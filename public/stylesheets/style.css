@@ -59,6 +59,9 @@ body {
 .card .card-body {
   padding: 0px; }
 
+#tourImg {
+  height: 50vh; }
+
 .sticky {
   position: -webkit-sticky;
   position: sticky;

@@ -19,7 +19,21 @@ module.exports = (app, passport) => {
       failureFlash : true // allow flash messages
     }), (req, res, next) => {
       req.flash('success', 'Welcome!');
-      res.redirect('/questions');
+      res.redirect('/tours');
+    }
+  );
+
+  app.get('/auth/google',
+    passport.authenticate('google', { scope : ['email', 'profile'] })
+  );
+
+  app.get('/auth/google/callback',
+    passport.authenticate('google', {
+      failureRedirect : '/signin',
+      failureFlash : true // allow flash messages
+    }), (req, res, next) => {
+      req.flash('success', 'Welcome!');
+      res.redirect('/tours');
     }
   );
 
