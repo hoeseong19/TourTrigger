@@ -4,6 +4,7 @@ const Guide = require('../models/guide');
 const Review = require('../models/review');
 const Reservation = require('../models/reservation');
 const Course = require("../models/course");
+const Geonames = require('geonames.js');
 const router = express.Router();
 
 function needAuth(req, res, next) {
@@ -16,6 +17,12 @@ function needAuth(req, res, next) {
 }
 
 router.get('/', function(req, res, next) {
+  const geonames = new Geonames({
+    username: 'hoeseong19',
+    lan: 'en',
+    encoding: 'JSON'
+  });
+
   const page = parseInt(req.query.page) || 1;
 
   var query = {};
@@ -30,17 +37,11 @@ router.get('/', function(req, res, next) {
 
   if(sort == 'review') {
     option.sort = {numReviews: -1};
-  }
-
-  else if(sort == 'price') {
+  } else if(sort == 'price') {
     option.sort = {price: -1};
-  }
-
-  else if(sort == 'new') {
+  } else if(sort == 'new') {
     option.sort = {reg_date: -1};
-  }
-
-  else {
+  } else {
     option.sort = {numReserves: -1};
   }
   
@@ -52,6 +53,13 @@ router.get('/', function(req, res, next) {
       {content: {'$regex': term, '$options': 'i'}}
     ]};
   }
+
+  geonames.search({q: 'CONT'}) //get continents
+  .then(resp => {
+    console.log("continents?????", resp.geonames);
+    res.app.locals.continents = resp.geonames;
+  })
+  .catch(err => console.error(err));
 
   Tour.paginate(query, option, function(err, tours) {
     if (err) {

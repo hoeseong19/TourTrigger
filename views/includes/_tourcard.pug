@@ -6,8 +6,10 @@ div(data-aos="fade-up")
           img.card-img(src=tour.image)
         .col-md-8.tourdesc
           div(class="card-body")
-            small= tour.category
-            i(class="far fa-heart float-right")
+            h5= tour.category
+            div
+              i(class="far fa-heart float-right" role="button" tabindex="-1")
+            i(class="fas fa-heart float-right")
             h3= tour.title
             if tour.guide
               small made by !{tour.guide.name}

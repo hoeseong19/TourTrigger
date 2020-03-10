@@ -1,0 +1,8 @@
+.jumbotron
+  .container
+    .d-flex.justify-content-start
+      div(class="dropdown") 
+        button(class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Dropdown button
+        div(class="dropdown-menu" aria-labelledby="dropdownMenuButton")
+          each continent in continents
+            button(class="dropdown-item" type="button")= continent.name

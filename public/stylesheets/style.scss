@@ -1,6 +1,8 @@
 $primary_color:#e3f2fd;
 $secondary_color: #FFF9E3;
 
+@import "./tour";
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -57,13 +59,7 @@ body {
   }
 }
 
-#map {
-  height: 500px;
-}
 
-.coursemap {
-  height: 200px;
-}
 
 .modal-body::-webkit-scrollbar {
   display: none;
@@ -82,9 +78,7 @@ body {
   }
 }
 
-#tourImg {
-  height: 50vh;
-}
+
 
 .sticky {
   position: -webkit-sticky;

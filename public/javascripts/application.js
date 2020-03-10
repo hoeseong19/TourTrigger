@@ -1,8 +1,10 @@
+// summernote init
 $(function() {
   $('.summernote').summernote();
   $('.note-popover').hide();
 });
 
+// aos init
 $(function() {
   AOS.init({
     easing: 'ease-out-back',
@@ -10,6 +12,7 @@ $(function() {
   });
 });
 
+//confirm message
 $(function() {
   $('.need-confirm-btn').click(function() {
     if (confirm('Are you sure to delete?')) {
