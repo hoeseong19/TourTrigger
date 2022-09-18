@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 const aws = require('aws-sdk');
 const S3_BUCKET = process.env.S3_BUCKET;
-const uuidv4 = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 
 router.get('/s3', function(req, res, next) {
   const s3 = new aws.S3({region: 'ap-northeast-2'});
