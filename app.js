@@ -10,17 +10,17 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var toursRouter = require('./routes/tours');
-var guidesRouter = require('./routes/guides');
+var indexRouter = require('./src/routes/index');
+var usersRouter = require('./src/routes/users');
+var toursRouter = require('./src/routes/tours');
+var guidesRouter = require('./src/routes/guides');
 
 var passportConfig = require('./lib/passport-config');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'pug');
 
 app.locals.moment = require('moment');
@@ -69,8 +69,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tours', toursRouter);
 app.use('/guides', guidesRouter);
-require('./routes/auth')(app, passport);
-// app.use('/api', require('./routes/api'));
+require('./src/routes/auth')(app, passport);
+// app.use('/api', require('./src/routes/api'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
