@@ -1,0 +1,16 @@
+version: '3'
+services:
+  server:
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    env_file:
+      - ./env/development.env
+    networks:
+      - tour-trigger
+
+networks:
+  tour-trigger:
