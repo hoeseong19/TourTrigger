@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon --inspect ./bin/www",
-    "test": "jest"
+    "test": "jest",
+    "test:e2e": "jest --config ./tests/integrations/jest-e2e.json --forceExit --detectOpenHandles"
   },
   "dependencies": {
     "aos": "^2.3.4",
