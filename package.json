@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --inspect ./bin/www"
+    "start": "nodemon --inspect ./bin/www",
+    "test": "jest"
   },
   "dependencies": {
     "aos": "^2.3.4",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "eslint": "^6.7.2",
+    "jest": "^25.5.4",
     "nodemon": "^3.0.1"
   }
 }
