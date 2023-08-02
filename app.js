@@ -27,7 +27,7 @@ app.locals.moment = require('moment');
 app.locals.querystring = require('querystring');
 
 mongoose.Promise = global.Promise;
-const connStr = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.miocymi.mongodb.net/?retryWrites=true&w=majority`;
+const connStr = `${process.env.MONGODB_PROTOCOL}://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER_URL}`;
 mongoose.connect(connStr, {useNewUrlParser: true});
 mongoose.connection.on('error', console.error);
 
