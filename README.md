@@ -9,6 +9,32 @@ OS: windows 10
 
 데이터베이스: mongodb
 
+## 환경변수
+
+### Server
+
+- MONGODB_USERNAME
+- MONGODB_PASSWORD
+- MONGODB_PROTOCOL
+- MONGODB_CLUSTER_URL
+
+- GOOGLE_MAPS_API_KEY
+
+- PORT
+
+- FACEBOOK_APP_ID
+- FACEBOOK_API_KEY
+
+- Google_APP_ID
+- Google_API_KEY
+
+- S3_BUCKET
+
+### Database
+
+- MONGO_INITDB_ROOT_USERNAME
+- MONGO_INITDB_ROOT_PASSWORD
+
 ---
 ## Docker
 
