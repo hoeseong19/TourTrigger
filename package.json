@@ -40,10 +40,14 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "eslint": "^6.7.2",
+    "eslint": "^8.46.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.28.0",
     "jest": "^25.5.4",
     "node-html-parser": "^1.4.9",
     "nodemon": "^3.0.1",
+    "prettier": "^1.19.1",
     "supertest": "^4.0.2"
   }
 }
