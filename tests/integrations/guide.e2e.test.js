@@ -2,6 +2,7 @@ const HTMLParser = require("node-html-parser");
 const HTTPStatusCode = require("http-status-codes");
 const request = require("supertest");
 
+const mongoose = require('mongoose');
 const app = require("../../app");
 
 const fakeEmail = "guide@email.com";
@@ -14,6 +15,18 @@ const messageUserNotSignedIn = "Please signin first.";
 
 describe("Guide", () => {
     const agent = request.agent(app);
+
+    beforeAll(async () => {
+        const connStr = `${process.env.MONGODB_PROTOCOL}://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER_URL}`;
+        await mongoose.connect(connStr, {useNewUrlParser: true});
+        await mongoose.connection.dropDatabase();
+        mongoose.connection.on('error', console.error);
+    });
+
+    afterAll(async () => {
+        await mongoose.connection.dropDatabase();
+        await mongoose.connection.close();
+    })
 
     describe("가이드 생성", () => {
         it("로그인하지 않은 사용자는 가이드 생성 화면 접근 불가", (done) => {

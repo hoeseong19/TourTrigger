@@ -2,6 +2,7 @@ const HTTPStatusCode = require("http-status-codes");
 const request = require("supertest");
 const HTMLParser = require("node-html-parser");
 
+const mongoose = require('mongoose');
 const app = require("../../app");
 
 const fakeEmail = "email@email.com";
@@ -22,6 +23,18 @@ const messagePasswordsNotTheSame = "Passsword do not match.";
 const messagePasswordTooShort = "Password must be at least 6 characters.";
 
 describe("Auth", () => {
+    beforeAll(async () => {
+        const connStr = `${process.env.MONGODB_PROTOCOL}://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER_URL}`;
+        await mongoose.connect(connStr, {useNewUrlParser: true});
+        await mongoose.connection.dropDatabase();
+        mongoose.connection.on('error', console.error);
+    });
+
+    afterAll(async () => {
+        await mongoose.connection.dropDatabase();
+        await mongoose.connection.close();
+    })
+
     describe("회원가입 요청", () => {
         const agent = request.agent(app);
 
