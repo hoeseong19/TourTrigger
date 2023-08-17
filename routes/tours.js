@@ -125,21 +125,26 @@ router.delete('/:id', needAuth, async function(req, res, next) {
 });
 
 router.post('/', needAuth, async function(req, res, next) {
-  const user = req.user;
-  const guide = await Guide.findOne({user: user._id});
+  try {
+    const user = req.user;
+    const guide = await Guide.findOne({user: user._id});
 
-  var tour = new Tour({
-    guide: guide._id,
-    title: req.body.title,
-    description: req.body.description,
-    price: req.body.price,
-    image: req.body.image, 
-    category: req.body.category, 
-    city: guide.city
-  });
-  await tour.save();
-  req.flash('success', 'Successfully posted');
-  res.redirect('/tours');
+    var tour = new Tour({
+      guide: guide._id,
+      title: req.body.title,
+      description: req.body.description,
+      price: req.body.price,
+      image: req.body.image, 
+      category: req.body.category, 
+      city: guide.city
+    });
+    await tour.save();
+    req.flash('success', 'Successfully posted');
+    res.redirect('/tours');
+  } catch (error) {
+    console.error(error.message);
+    next(error);
+  }
 });
 
 router.post('/:id/course', async function(req, res, next) {
