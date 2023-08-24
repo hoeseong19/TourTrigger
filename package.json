@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon --inspect ./bin/www",
+    "start:dev": "ts-node-dev --inspect --transpile-only index.ts",
     "test": "jest",
     "test:e2e": "jest --config ./tests/integrations/jest-e2e.json --forceExit --detectOpenHandles"
   },
@@ -40,6 +41,8 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "^25.2.3",
     "eslint": "^8.46.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^6.15.0",
@@ -48,6 +51,9 @@
     "node-html-parser": "^1.4.9",
     "nodemon": "^3.0.1",
     "prettier": "^1.19.1",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.5.1",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^3.8.3"
   }
 }
