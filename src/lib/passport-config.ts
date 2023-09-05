@@ -4,7 +4,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/user');
 
 
-module.exports = function(passport) {
+const passportConfig = function(passport) {
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
@@ -107,3 +107,5 @@ module.exports = function(passport) {
     }
   }));
 };
+
+export default passportConfig;

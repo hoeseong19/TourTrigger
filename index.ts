@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+import app from './src/app';
 var debug = require('debug')('webproject:server');
 var http = require('http');
 

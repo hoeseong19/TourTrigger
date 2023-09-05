@@ -5,7 +5,7 @@ var User = require("../models/user");
 const multer = require('multer');
 const fs = require('fs-extra');
 const path = require('path');
-var router = express.Router();
+export const router = express.Router();
 
 function needAuth(req, res, next) {
   if (req.isAuthenticated()) {
@@ -54,5 +54,3 @@ router.post('/', async function(req, res, next) {
   await guide.save();
   res.redirect('/');
 });
-
-module.exports = router;

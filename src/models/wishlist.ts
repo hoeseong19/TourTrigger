@@ -9,6 +9,4 @@ var schema = new Schema({
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
 });
-var Wishlist = mongoose.model('Wishlist', schema);
-
-module.exports = Wishlist;
+export const Wishlist = mongoose.model('Wishlist', schema);

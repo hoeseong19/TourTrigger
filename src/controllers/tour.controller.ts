@@ -5,7 +5,7 @@ const Reservation = require('../models/reservation');
 const Course = require('../models/course');
 // const Geonames = require('geonames.js');
 
-class TourController {
+export class TourController {
     getListTour(req, res, next) {
         // const geonames = new Geonames({
         //     username: 'hoeseong19',
@@ -197,5 +197,3 @@ class TourController {
         res.redirect(`/users/${user.id}`);
     }
 }
-
-module.exports = TourController;

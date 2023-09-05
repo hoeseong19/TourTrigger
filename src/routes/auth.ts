@@ -1,4 +1,4 @@
-module.exports = (app, passport) => {
+export const routeAuth = (app, passport) => {
   app.get('/signin', (req, res, next) => {
     res.render('signin');
   });

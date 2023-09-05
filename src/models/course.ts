@@ -13,6 +13,4 @@ var schema = new Schema({
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
 });
-var Course = mongoose.model('Course', schema);
-
-module.exports = Course;
+export const Course = mongoose.model('Course', schema);

@@ -1,26 +1,27 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
-var mongoose = require('mongoose');
-var methodOverride = require('method-override');
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import sassMiddleware from 'node-sass-middleware';
+import mongoose from 'mongoose';
+import methodOverride from 'method-override';
+import flash from 'connect-flash';
+import session from 'express-session';
+import passport from 'passport';
 
-var indexRouter = require('./src/routes/index');
-var usersRouter = require('./src/routes/users');
-var toursRouter = require('./src/routes/tours');
-var guidesRouter = require('./src/routes/guides');
+import { router as indexRouter } from './routes/index';
+import { router as usersRouter } from './routes/users';
+import { router as toursRouter } from './routes/tours';
+import { router as guidesRouter } from './routes/guides';
+import {routeAuth} from './routes/auth';
 
-var passportConfig = require('./lib/passport-config');
+import passportConfig from './lib/passport-config';
 
-var app = express();
+const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'src/views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.locals.moment = require('moment');
@@ -69,8 +70,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tours', toursRouter);
 app.use('/guides', guidesRouter);
-require('./src/routes/auth')(app, passport);
-// app.use('/api', require('./src/routes/api'));
+routeAuth(app, passport);
+// app.use('/api', require('./routes/api'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -88,4 +89,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

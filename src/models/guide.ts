@@ -14,6 +14,4 @@ var schema = new Schema({
   toObject: {virtuals: true}
 });
 schema.plugin(mongoosePaginate);
-var Guide = mongoose.model('Guide', schema);
-
-module.exports = Guide;
+export const Guide = mongoose.model('Guide', schema);

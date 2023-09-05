@@ -11,6 +11,4 @@ var schema = new Schema({
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
 });
-var Reservation = mongoose.model('Reservation', schema);
-
-module.exports = Reservation;
+export const Reservation = mongoose.model('Reservation', schema);

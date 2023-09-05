@@ -13,6 +13,4 @@ var schema = new Schema({
   toObject: {virtuals: true}
 });
 schema.plugin(mongoosePaginate);
-var Review = mongoose.model('Review', schema);
-
-module.exports = Review;
+export const Review = mongoose.model('Review', schema);

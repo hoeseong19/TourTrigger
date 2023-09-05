@@ -3,7 +3,7 @@ var User = require("../models/user");
 var Guide = require("../models/guide");
 var Tour = require("../models/tour");
 var Reservation = require("../models/reservation");
-var router = express.Router();
+export const router = express.Router();
 
 function needAuth(req, res, next) {
   if (req.isAuthenticated()) {
@@ -129,5 +129,3 @@ router.post('/', async function(req, res, next) {
   req.flash('success', 'Registered successfully. Please sign in.');
   res.redirect('/');
 });
-
-module.exports = router;

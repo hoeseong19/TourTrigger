@@ -19,6 +19,4 @@ var schema = new Schema({
   toObject: {virtuals: true}
 });
 schema.plugin(mongoosePaginate);
-var Tour = mongoose.model('Tour', schema);
-
-module.exports = Tour;
+export const Tour = mongoose.model('Tour', schema);

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
-    mongoosePaginate = require('mongoose-paginate'),
-    bcrypt = require("bcryptjs");
-    Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
+const bcrypt = require("bcryptjs");
+const Schema = mongoose.Schema;
 
 var schema = new Schema({
   name: {type: String, required: true, trim: true},
@@ -26,6 +26,4 @@ schema.methods.validatePassword = function(password) {
 };
 
 schema.plugin(mongoosePaginate);
-var User = mongoose.model('User', schema);
-
-module.exports = User;
+export const User = mongoose.model('User', schema);

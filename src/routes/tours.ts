@@ -1,7 +1,7 @@
 const express = require('express');
-const TourController = require('../controllers/tour.controller');
+import { TourController } from '../controllers/tour.controller';
 
-const router = express.Router();
+export const router = express.Router();
 
 function needAuth(req, res, next) {
     if (req.isAuthenticated()) {
@@ -35,5 +35,3 @@ router.post('/:id/course', tourController.createTourCourse);
 router.post('/:id/review', tourController.createTourReview);
 
 router.post('/:id/reserve', tourController.createTourReserve);
-
-module.exports = router;
